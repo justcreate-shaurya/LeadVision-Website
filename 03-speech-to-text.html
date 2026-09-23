@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Speech-to-Text — Leadvision AI</title>
+<meta name="description" content="Transcription that survives real call audio. Background noise, accents, and Hinglish handled the way the call actually sounded.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ===== SHARED DESIGN SYSTEM ===== */
+  :root {
+    --ink: #1b2027; --ink-soft: #55606b; --ink-faint: #8a939c;
+    --slate: #6f8090; --slate-dark: #333c46; --slate-tint: #eef1f3; --slate-line: #dde2e6;
+    --yellow: #eae948; --yellow-deep: #9d9c1e; --red: #bd2525;
+    --bg: #fbfaf7; --bg-alt: #f4f2ec; --white: #ffffff; --radius: 10px;
+    --display: 'Space Grotesk', var(--sans);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', monospace;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  header.nav { position: sticky; top: 0; z-index: 40; background: rgba(251,250,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--slate-line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: var(--white); padding: 11px 20px; border-radius: 0; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); cursor: pointer; transition: background 0.15s ease, border-color .15s ease; }
+  .btn:hover { background: var(--slate-dark); border-color: var(--slate-dark); }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { background: #a11f1f; border-color: #a11f1f; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--slate-line); }
+  .btn-ghost:hover { border-color: var(--slate); }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  section { padding: 92px 0; }
+  .section-head { max-width: 640px; margin-bottom: 46px; }
+  .section-head h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.15rem); letter-spacing: -0.015em; margin: 0 0 12px; }
+  .section-head p { color: var(--ink-soft); font-size: 1rem; margin: 0; }
+
+  .faq { background: var(--bg-alt); }
+  .faq-head { text-align: center; max-width: 520px; margin: 0 auto 40px; }
+  .faq-list { max-width: 760px; margin: 0 auto; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  .faq-item { border-bottom: 1px solid var(--slate-line); padding: 20px 24px; cursor: pointer; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.96rem; }
+  .faq-q .plus { color: var(--slate); font-size: 1.1rem; }
+  .faq-a { color: var(--ink-soft); font-size: 0.9rem; margin-top: 10px; max-width: 60ch; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  .cta-band { background: var(--ink); color: var(--white); text-align: center; padding: 96px 0; }
+  .cta-band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.4rem); margin: 0 0 28px; }
+  .cta-band .btn.primary { padding: 13px 30px; font-size: 0.96rem; }
+
+  footer { background: var(--slate-dark); color: #c3cbd2; padding: 64px 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+  @media (max-width: 780px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  footer .flogo { font-family: var(--display); color: var(--white); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  footer .flogo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  footer .fcol h4 { font-family: var(--mono); font-size: 0.72rem; color: #9aa5ae; letter-spacing: 0.03em; margin: 0 0 14px; }
+  footer .fcol a { display: block; font-size: 0.88rem; margin-bottom: 10px; color: #c3cbd2; }
+  footer .fcol a:hover { color: var(--white); }
+  footer .fbottom { border-top: 1px solid #46505b; padding-top: 24px; font-size: 0.8rem; color: #8b95a0; }
+
+  /* ===== PAGE-SPECIFIC ===== */
+  .hero { padding: 92px 0 76px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2.1rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 22px; max-width: 18ch; }
+  .hero p.lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 46ch; margin: 0 0 30px; }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  /* Upload panel */
+  .upload-section { background: var(--bg-alt); }
+  .upload-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--slate-line); border-radius: 14px; overflow: hidden; min-height: 260px; }
+  @media (max-width: 780px) { .upload-grid { grid-template-columns: 1fr; } }
+  .upload-drop { background: var(--white); padding: 52px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-right: 1px solid var(--slate-line); }
+  @media (max-width: 780px) { .upload-drop { border-right: none; border-bottom: 1px solid var(--slate-line); } }
+  .upload-drop .drop-icon { width: 52px; height: 52px; border-radius: 50%; background: var(--slate-tint); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 1.4rem; color: var(--slate); }
+  .upload-drop h3 { font-family: var(--display); font-size: 1.05rem; font-weight: 600; margin: 0 0 6px; }
+  .upload-drop p { color: var(--ink-faint); font-size: 0.85rem; margin: 0; }
+  .transcript-output { background: var(--bg-alt); padding: 52px 40px; display: flex; align-items: center; justify-content: center; color: var(--ink-faint); font-size: 0.9rem; font-family: var(--mono); }
+
+  /* Big stat */
+  .big-stat { text-align: center; padding: 96px 0; }
+  .big-stat .num { font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 7vw, 5rem); color: var(--ink); letter-spacing: -0.02em; margin-bottom: 12px; }
+  .big-stat .sub { font-size: 1rem; color: var(--ink-soft); max-width: 52ch; margin: 0 auto; }
+
+  /* Format cards */
+  .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .format-grid.row2 { grid-template-columns: repeat(2, 1fr); margin-top: 20px; max-width: 740px; }
+  @media (max-width: 780px) { .format-grid, .format-grid.row2 { grid-template-columns: 1fr; } }
+  .format-card { background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); padding: 24px 22px; border-top: 3px solid var(--slate-line); }
+  .format-card .tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.03em; color: var(--red); font-weight: 700; margin-bottom: 12px; }
+  .format-card p { font-size: 0.92rem; color: var(--ink); margin: 0; line-height: 1.55; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="leadvision-homepage-v2.html" class="logo"><span class="dot"></span>Leadvision AI</a>
+    <nav class="nav-links">
+      <a href="leadvision-homepage-v2.html#products">Product</a>
+      <a href="07-company.html">Company</a>
+    </nav>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Transcription that survives real call audio</h1>
+    <p class="lede">Background noise, accents, and Hindi and English mixed in the same sentence — handled the way the call actually sounded.</p>
+    <div class="hero-cta">
+      <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+      <a href="#upload" class="btn btn-ghost">Upload a call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRY IT ON YOUR OWN CALL ===== -->
+<section class="upload-section" id="upload">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Try it on your own call</h2>
+    </div>
+    <div class="upload-grid">
+      <div class="upload-drop">
+        <div class="drop-icon">↑</div>
+        <h3>Drop a call recording here</h3>
+        <p>Transcript comes back in [XX] minutes.</p>
+      </div>
+      <div class="transcript-output">TRANSCRIPT OUTPUT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG STAT ===== -->
+<div class="big-stat">
+  <div class="wrap">
+    <div class="num">[XX]% word error rate</div>
+    <p class="sub">Measured on [XX] hours of real call-centre audio, recorded over mobile networks, evaluated on standard CPU hardware.</p>
+  </div>
+</div>
+
+<!-- ===== FIVE WAYS ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>The same sentence, five ways</h2>
+      <p>Choose the output format that fits how you'll use the transcript.</p>
+    </div>
+    <div class="format-grid">
+      <div class="format-card">
+        <div class="tag">TRANSCRIBE</div>
+        <p>सर मैने ₹4,250 का payment किया था last Tuesday.</p>
+      </div>
+      <div class="format-card">
+        <div class="tag">TRANSLATE (ENGLISH)</div>
+        <p>Sir, I made a payment of ₹4,250 last Tuesday.</p>
+      </div>
+      <div class="format-card">
+        <div class="tag">ROMANISED</div>
+        <p>Sir maine ₹4,250 ka payment kiya tha last Tuesday.</p>
+      </div>
+    </div>
+    <div class="format-grid row2">
+      <div class="format-card">
+        <div class="tag">DEVANAGARI</div>
+        <p>सर मैने ₹4,250 का पेमेंट किया था लास्ट ट्यूज़डे।</p>
+      </div>
+      <div class="format-card">
+        <div class="tag">WORD-FOR-WORD</div>
+        <p>Sir, um, maine, uh, ₹4,250 ka payment kiya tha, last Tuesday.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q"><span>How accurate is it on real phone audio?</span><span class="plus">–</span></div>
+        <div class="faq-a" style="display:block;">Word error rate of [XX]%, measured on [XX] hours of real call-centre audio recorded over mobile networks.</div>
+      </div>
+      <div class="faq-item"><div class="faq-q"><span>What audio formats are supported?</span><span class="plus">+</span></div><div class="faq-a">WAV, MP3, FLAC, OGG, and raw PCM. Both mono and stereo are supported.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>Can it tell speakers apart?</span><span class="plus">+</span></div><div class="faq-a">Yes — speaker diarisation is built in. You get separate speaker labels for agent and customer.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>How long does a recording take to come back?</span><span class="plus">+</span></div><div class="faq-a">Batch transcription returns in [XX] minutes for a typical call. Streaming transcription is real-time.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>What happens to our audio afterwards?</span><span class="plus">+</span></div><div class="faq-a">Audio is processed and then deleted. We do not use your audio to train models unless you explicitly opt in.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to see it on your own calls?</h2>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="flogo"><span class="dot"></span>Leadvision AI</div></div>
+      <div class="fcol">
+        <h4>PRODUCTS</h4>
+        <a href="02-voice-ai-agent.html">Voice AI Agent</a>
+        <a href="03-speech-to-text.html">Speech-to-Text</a>
+        <a href="04-text-to-speech.html">Text-to-Speech</a>
+        <a href="05-qa-analytics.html">QA &amp; Analytics</a>
+        <a href="06-consumer-insights.html">Consumer Insights</a>
+      </div>
+      <div class="fcol">
+        <h4>COMPANY</h4>
+        <a href="07-company.html">About</a>
+        <a href="07-company.html#hiring">Careers</a>
+      </div>
+      <div class="fcol">
+        <h4>CONTACT</h4>
+        <a href="08-book-a-demo.html">Book a demo</a>
+        <a href="#">Sales</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="fcol">
+        <h4>LEGAL</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Trust Center</a>
+      </div>
+    </div>
+    <div class="fbottom">© 2026 Leadvision AI</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

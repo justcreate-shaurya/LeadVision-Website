@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QA &amp; Analytics — Leadvision AI</title>
+<meta name="description" content="Score 100% of your calls against your own scorecard, with the quoted evidence behind every score.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ===== SHARED DESIGN SYSTEM ===== */
+  :root {
+    --ink: #1b2027; --ink-soft: #55606b; --ink-faint: #8a939c;
+    --slate: #6f8090; --slate-dark: #333c46; --slate-tint: #eef1f3; --slate-line: #dde2e6;
+    --yellow: #eae948; --yellow-deep: #9d9c1e; --red: #bd2525;
+    --bg: #fbfaf7; --bg-alt: #f4f2ec; --white: #ffffff; --radius: 10px;
+    --display: 'Space Grotesk', var(--sans);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', monospace;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  header.nav { position: sticky; top: 0; z-index: 40; background: rgba(251,250,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--slate-line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: var(--white); padding: 11px 20px; border-radius: 0; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); cursor: pointer; transition: background 0.15s ease, border-color .15s ease; }
+  .btn:hover { background: var(--slate-dark); border-color: var(--slate-dark); }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { background: #a11f1f; border-color: #a11f1f; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--slate-line); }
+  .btn-ghost:hover { border-color: var(--slate); }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  section { padding: 92px 0; }
+  .section-head { max-width: 640px; margin-bottom: 46px; }
+  .section-head h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.15rem); letter-spacing: -0.015em; margin: 0 0 12px; }
+  .section-head p { color: var(--ink-soft); font-size: 1rem; margin: 0; }
+
+  .faq { background: var(--bg-alt); }
+  .faq-head { text-align: center; max-width: 520px; margin: 0 auto 40px; }
+  .faq-list { max-width: 760px; margin: 0 auto; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  .faq-item { border-bottom: 1px solid var(--slate-line); padding: 20px 24px; cursor: pointer; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.96rem; }
+  .faq-q .plus { color: var(--slate); font-size: 1.1rem; }
+  .faq-a { color: var(--ink-soft); font-size: 0.9rem; margin-top: 10px; max-width: 60ch; display: none; }
+  .faq-item.open .faq-a { display: block; }
+
+  .cta-band { background: var(--ink); color: var(--white); text-align: center; padding: 96px 0; }
+  .cta-band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.4rem); margin: 0 0 28px; }
+  .cta-band .btn.primary { padding: 13px 30px; font-size: 0.96rem; }
+
+  footer { background: var(--slate-dark); color: #c3cbd2; padding: 64px 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+  @media (max-width: 780px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  footer .flogo { font-family: var(--display); color: var(--white); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  footer .flogo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  footer .fcol h4 { font-family: var(--mono); font-size: 0.72rem; color: #9aa5ae; letter-spacing: 0.03em; margin: 0 0 14px; }
+  footer .fcol a { display: block; font-size: 0.88rem; margin-bottom: 10px; color: #c3cbd2; }
+  footer .fcol a:hover { color: var(--white); }
+  footer .fbottom { border-top: 1px solid #46505b; padding-top: 24px; font-size: 0.8rem; color: #8b95a0; }
+
+  /* ===== PAGE-SPECIFIC ===== */
+  .hero { padding: 92px 0 76px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2.1rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 22px; max-width: 20ch; }
+  .hero p.lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 50ch; margin: 0 0 30px; }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  /* Scorecard table */
+  .scorecard { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  .scorecard thead th { background: var(--bg-alt); padding: 14px 20px; text-align: left; font-size: 0.82rem; font-weight: 600; color: var(--ink-faint); border-bottom: 1px solid var(--slate-line); }
+  .scorecard tbody td { padding: 16px 20px; border-bottom: 1px solid var(--slate-line); font-size: 0.92rem; vertical-align: top; }
+  .scorecard tbody tr:last-child td { border-bottom: none; }
+  .scorecard .check-name { font-weight: 600; }
+  .pass { display: inline-block; background: #dcf5e0; color: #1a7a2e; font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+  .fail { display: inline-block; background: #fde0e0; color: var(--red); font-size: 0.76rem; font-weight: 700; padding: 3px 10px; border-radius: 4px; }
+  .evidence { color: var(--ink-soft); font-size: 0.85rem; }
+  .transcript-ref { background: var(--bg-alt); border: 1px solid var(--slate-line); border-radius: 6px; padding: 10px 14px; margin-top: 8px; font-size: 0.82rem; color: var(--ink-soft); font-style: italic; }
+
+  /* How it works steps */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; text-align: center; }
+  @media (max-width: 780px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
+  .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 1rem; margin: 0 auto 14px; }
+  .step-title { font-family: var(--display); font-weight: 600; font-size: 1rem; margin-bottom: 8px; }
+  .step-desc { font-size: 0.85rem; color: var(--ink-soft); max-width: 22ch; margin: 0 auto; }
+
+  /* Comparison table */
+  table.compare { width: 100%; border-collapse: collapse; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  table.compare th, table.compare td { padding: 16px 20px; text-align: left; border-bottom: 1px solid var(--slate-line); font-size: 0.92rem; }
+  table.compare thead th { background: var(--bg-alt); color: var(--ink-faint); font-weight: 600; font-size: 0.82rem; }
+  table.compare thead th.us { color: var(--ink); }
+  table.compare tbody th { font-weight: 700; }
+  table.compare td.us { color: var(--red); font-weight: 700; }
+  .table-scroll { overflow-x: auto; }
+  .table-scroll table { min-width: 640px; }
+
+  /* Feature grid */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 780px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-card { background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); padding: 28px 24px; }
+  .feature-icon { width: 42px; height: 42px; background: var(--slate-tint); border-radius: 9px; margin-bottom: 16px; }
+  .feature-card h3 { font-family: var(--display); font-size: 1rem; font-weight: 600; margin: 0 0 8px; }
+  .feature-card p { color: var(--ink-soft); font-size: 0.88rem; margin: 0; }
+
+  /* Big stats */
+  .stats-band { background: var(--bg-alt); text-align: center; padding: 80px 0; }
+  .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; max-width: 640px; margin: 0 auto 18px; }
+  @media (max-width: 560px) { .stats-row { grid-template-columns: 1fr; } }
+  .stat-big { font-family: var(--display); font-weight: 700; font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--ink); margin-bottom: 6px; }
+  .stat-sub { font-size: 0.92rem; color: var(--ink-soft); }
+  .stats-fine { color: var(--ink-faint); font-size: 0.78rem; max-width: 56ch; margin: 0 auto; }
+
+  /* Use case columns */
+  .usecase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 780px) { .usecase-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .usecase-grid { grid-template-columns: 1fr; } }
+  .usecase-col h3 { font-family: var(--display); font-size: 1.02rem; font-weight: 600; margin: 0 0 8px; }
+  .usecase-col p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+
+  /* Integration blocks */
+  .int-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 640px) { .int-grid { grid-template-columns: 1fr; } }
+  .int-block { background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); padding: 28px 24px; border-top: 3px solid var(--slate); }
+  .int-block h3 { font-family: var(--display); font-size: 1.02rem; font-weight: 600; margin: 0 0 10px; }
+  .int-block p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="leadvision-homepage-v2.html" class="logo"><span class="dot"></span>Leadvision AI</a>
+    <nav class="nav-links">
+      <a href="leadvision-homepage-v2.html#products">Product</a>
+      <a href="07-company.html">Company</a>
+    </nav>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap">
+    <h1>Score 100% of your calls, not the 2% you sample.</h1>
+    <p class="lede">Every call is scored against your own scorecard, with the quoted evidence behind every score.</p>
+    <div class="hero-cta">
+      <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+      <a href="#scorecard" style="font-weight:600; color:var(--ink); font-size:0.92rem;">See a sample report ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EVERY SCORE COMES WITH PROOF ===== -->
+<section style="background:var(--bg-alt);" id="scorecard">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Every score comes with proof</h2>
+      <p>A sample scorecard from one call, checked against a compliance scorecard.</p>
+    </div>
+    <div class="table-scroll">
+      <table class="scorecard">
+        <thead>
+          <tr><th>CHECK</th><th>RESULT</th><th>EVIDENCE</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="check-name">Greeting includes required disclosure</td>
+            <td><span class="pass">Pass</span></td>
+            <td class="evidence">"Aapki call is being recorded for quality and training purposes" — 00:04
+              <div class="transcript-ref">TRANSCRIPT — 00:12<br>"Sir, main aapko confirm kar deti hoon, aapki call is being recorded for quality and training purposes."</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="check-name">Verified customer identity</td>
+            <td><span class="pass">Pass</span></td>
+            <td class="evidence">Agent confirmed name and account number — 00:38</td>
+          </tr>
+          <tr>
+            <td class="check-name">Did not make payment promise without approval</td>
+            <td><span class="fail">Fail</span></td>
+            <td class="evidence">"I can waive that late fee right now" — 02:15</td>
+          </tr>
+          <tr>
+            <td class="check-name">Offered the right resolution</td>
+            <td><span class="pass">Pass</span></td>
+            <td class="evidence">Refund process explained correctly — 03:40</td>
+          </tr>
+          <tr>
+            <td class="check-name">Closed with next steps confirmed</td>
+            <td><span class="pass">Pass</span></td>
+            <td class="evidence">"Aapko SMS pe confirmation milega" — 04:50</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it works</h2>
+    </div>
+    <div class="steps-grid">
+      <div>
+        <div class="step-num">1</div>
+        <div class="step-title">Call</div>
+        <div class="step-desc">Every inbound and outbound call is captured automatically.</div>
+      </div>
+      <div>
+        <div class="step-num">2</div>
+        <div class="step-title">Transcript</div>
+        <div class="step-desc">The call is transcribed in Hindi, English and Hinglish.</div>
+      </div>
+      <div>
+        <div class="step-num">3</div>
+        <div class="step-title">Score</div>
+        <div class="step-desc">Scored against your scorecard, check by check.</div>
+      </div>
+      <div>
+        <div class="step-num">4</div>
+        <div class="step-title">Flagged for review</div>
+        <div class="step-desc">Failed checks and risky calls are surfaced for a human to look at.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== US VS OTHERS ===== -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Us vs others</h2>
+    </div>
+    <div class="table-scroll">
+      <table class="compare">
+        <thead>
+          <tr><th></th><th>Manual QA</th><th>Other tools</th><th class="us">Leadvision AI</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Calls checked</th><td>[XX]%</td><td>[XX]%</td><td class="us">100%</td></tr>
+          <tr><th>Whose scorecard</th><td>Yours</td><td>Vendor's</td><td class="us">Yours</td></tr>
+          <tr><th>Evidence behind score</th><td>Notes only</td><td>Sometimes</td><td class="us">Every score</td></tr>
+          <tr><th>Time to feedback</th><td>[XX] days</td><td>[XX] hours</td><td class="us">[XX] minutes</td></tr>
+          <tr><th>Languages</th><td>Any</td><td>Limited</td><td class="us">Hindi, English, Hinglish</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Features</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Your own scorecard</h3>
+        <p>Bring the checks you already use, we score every call against them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Evidence for every score</h3>
+        <p>Each result links back to the exact line in the transcript.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Alerts on risky calls</h3>
+        <p>Calls that fail critical checks are flagged the same day.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Agent-level feedback</h3>
+        <p>See scores and trends broken down by agent.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Custom reports</h3>
+        <p>Build reports around the checks and teams you care about.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Exports</h3>
+        <p>Pull scores and evidence out to the tools your team already uses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BIG STATS ===== -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stats-row">
+      <div>
+        <div class="stat-big">[XX%]</div>
+        <div class="stat-sub">of calls scored</div>
+      </div>
+      <div>
+        <div class="stat-big">[XX%]</div>
+        <div class="stat-sub">agreement with human auditors</div>
+      </div>
+    </div>
+    <p class="stats-fine">Agreement measured on [XX] calls, scored independently by [XX] human auditors and compared with the automated score.</p>
+  </div>
+</div>
+
+<!-- ===== USE CASES ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Use cases</h2>
+    </div>
+    <div class="usecase-grid">
+      <div class="usecase-col">
+        <h3>Compliance</h3>
+        <p>Check every call for required disclosures.</p>
+      </div>
+      <div class="usecase-col">
+        <h3>Collections</h3>
+        <p>Flag calls with payment promises that need approval.</p>
+      </div>
+      <div class="usecase-col">
+        <h3>Sales</h3>
+        <p>Score calls against your sales process.</p>
+      </div>
+      <div class="usecase-col">
+        <h3>Support</h3>
+        <p>Track resolution quality across every ticket call.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FITS INTO YOUR EXISTING SETUP ===== -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Fits into your existing setup</h2>
+    </div>
+    <div class="int-grid">
+      <div class="int-block">
+        <h3>Dialer</h3>
+        <p>Connects to the dialer you already use to pull in call recordings.</p>
+      </div>
+      <div class="int-block">
+        <h3>CRM</h3>
+        <p>Scores and evidence are written back to the right customer record.</p>
+      </div>
+      <div class="int-block">
+        <h3>Export to coaching tools</h3>
+        <p>Send flagged calls and scores to the tools your coaches use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q"><span>Can we use our own scorecard?</span><span class="plus">–</span></div>
+        <div class="faq-a" style="display:block;">Yes. You define the checks, we score every call against them.</div>
+      </div>
+      <div class="faq-item"><div class="faq-q"><span>Does it work on Hindi and Hinglish calls?</span><span class="plus">+</span></div><div class="faq-a">Yes — our transcription and scoring pipeline supports Hindi, English, and code-switched Hinglish.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>How is accuracy checked?</span><span class="plus">+</span></div><div class="faq-a">We measure agreement between automated scores and human auditors on a regular cadence.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>How quickly after a call do we see the score?</span><span class="plus">+</span></div><div class="faq-a">Scores are typically available within [XX] minutes of a call ending.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>Who can see the scores?</span><span class="plus">+</span></div><div class="faq-a">You control access. Scores can be visible to QA leads, managers, or agents depending on your setup.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to stop sampling 2% of your calls?</h2>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="flogo"><span class="dot"></span>Leadvision AI</div></div>
+      <div class="fcol">
+        <h4>PRODUCTS</h4>
+        <a href="02-voice-ai-agent.html">Voice AI Agent</a>
+        <a href="03-speech-to-text.html">Speech-to-Text</a>
+        <a href="04-text-to-speech.html">Text-to-Speech</a>
+        <a href="05-qa-analytics.html">QA &amp; Analytics</a>
+        <a href="06-consumer-insights.html">Consumer Insights</a>
+      </div>
+      <div class="fcol">
+        <h4>COMPANY</h4>
+        <a href="07-company.html">About</a>
+        <a href="07-company.html#hiring">Careers</a>
+      </div>
+      <div class="fcol">
+        <h4>CONTACT</h4>
+        <a href="08-book-a-demo.html">Book a demo</a>
+        <a href="#">Sales</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="fcol">
+        <h4>LEGAL</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Trust Center</a>
+      </div>
+    </div>
+    <div class="fbottom">© 2026 Leadvision AI</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

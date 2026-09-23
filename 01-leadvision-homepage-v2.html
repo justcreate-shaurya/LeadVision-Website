@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Leadvision AI — The voice AI stack for India</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1b2027;
+      --ink-soft: #55606b;
+      --ink-faint: #8a939c;
+      --slate: #6f8090;
+      --slate-dark: #333c46;
+      --slate-tint: #eef1f3;
+      --slate-line: #dde2e6;
+      --yellow: #eae948;
+      --yellow-deep: #9d9c1e;
+      --red: #bd2525;
+      --bg: #fbfaf7;
+      --bg-alt: #f4f2ec;
+      --white: #ffffff;
+      --radius: 10px;
+      --display: 'Space Grotesk', var(--sans);
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --mono: 'Space Mono', monospace;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 0 20px;
+      }
+    }
+
+    /* ---------- Nav ---------- */
+    header.nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 40;
+      background: rgba(251, 250, 247, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--slate-line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.12rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--ink);
+      color: var(--white);
+      padding: 11px 20px;
+      border-radius: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid var(--ink);
+      transition: background 0.15s ease, border-color .15s ease;
+    }
+
+    .btn:hover {
+      background: var(--slate-dark);
+      border-color: var(--slate-dark);
+    }
+
+    .btn.primary {
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .btn.primary:hover {
+      background: #a11f1f;
+      border-color: #a11f1f;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--slate-line);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--slate);
+    }
+
+    @media (max-width: 780px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 92px 0 76px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .eyebrow-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--slate-dark);
+      background: var(--slate-tint);
+      border: 1px solid var(--slate-line);
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow-tag .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    h1 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(2.3rem, 4.6vw, 3.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 22px;
+    }
+
+    h1 .accent {
+      background: linear-gradient(180deg, transparent 62%, var(--yellow) 62%);
+    }
+
+    .hero p.lede {
+      font-size: 1.08rem;
+      color: var(--ink-soft);
+      max-width: 46ch;
+      margin: 0 0 30px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .wave-panel {
+      background: var(--slate-dark);
+      border-radius: 16px;
+      aspect-ratio: 4/3.1;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .wave-panel .wp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #b9c2ca;
+    }
+
+    .wave-panel .live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .wave-panel .live .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .wave-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 130px;
+    }
+
+    .wave-bars span {
+      flex: 1;
+      border-radius: 3px;
+      background: var(--slate);
+    }
+
+    .wave-bars span:nth-child(3n) {
+      background: var(--yellow);
+    }
+
+    .wave-bars span:nth-child(7n) {
+      background: var(--white);
+      opacity: .5;
+    }
+
+    .wave-panel .wp-bottom {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #8b95a0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ---------- Advisors strip ---------- */
+    .strip {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--slate-line);
+      border-bottom: 1px solid var(--slate-line);
+      padding: 34px 0;
+    }
+
+    .strip-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+    }
+
+    .logo-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 780px) {
+      .logo-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .logo-chip {
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: 8px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      color: var(--ink-faint);
+      text-align: center;
+      padding: 6px;
+    }
+
+    /* ---------- Section shell ---------- */
+    section {
+      padding: 92px 0;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 46px;
+    }
+
+    .section-head h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3vw, 2.15rem);
+      letter-spacing: -0.015em;
+      margin: 0 0 12px;
+    }
+
+    .section-head p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    /* ---------- Products grid ---------- */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .products-grid.row2 {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 20px;
+      max-width: 740px;
+    }
+
+    @media (max-width: 880px) {
+
+      .products-grid,
+      .products-grid.row2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      padding: 28px 26px;
+      transition: border-color .15s ease, transform .15s ease;
+    }
+
+    .card:hover {
+      border-color: var(--slate);
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--slate-tint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--slate-dark);
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-family: var(--display);
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .card p {
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      margin: 0 0 16px;
+    }
+
+    .card a.learn {
+      color: var(--slate-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--yellow);
+      padding-bottom: 1px;
+    }
+
+    .card a.learn:hover {
+      color: var(--ink);
+    }
+
+    /* ---------- Recordings / tabs ---------- */
+    .recordings {
+      background: var(--bg-alt);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--slate-line);
+    }
+
+    .tab {
+      padding: 10px 4px;
+      margin-right: 22px;
+      font-size: 0.92rem;
+      color: var(--ink-faint);
+      font-weight: 600;
+      border-bottom: 2px solid transparent;
+    }
+
+    .tab.active {
+      color: var(--ink);
+      border-bottom-color: var(--yellow);
+    }
+
+    .call-list {
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .call-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--slate-line);
+      font-size: 0.94rem;
+    }
+
+    .call-row:last-child {
+      border-bottom: none;
+    }
+
+    .play {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--slate-tint);
+      color: var(--slate-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+    }
+
+    .call-title {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--slate-dark);
+      background: var(--slate-tint);
+      border: 1px solid var(--slate-line);
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .call-time {
+      font-family: var(--mono);
+      color: var(--ink-faint);
+      font-size: 0.82rem;
+      width: 46px;
+      text-align: right;
+    }
+
+    .fine-print {
+      color: var(--ink-faint);
+      font-size: 0.8rem;
+      margin-top: 16px;
+    }
+
+    /* ---------- Use-case columns ---------- */
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 880px) {
+      .usecase-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .usecase-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .usecase {
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      background: var(--white);
+      border-top: 3px solid var(--slate);
+    }
+
+    .usecase .tag {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.02em;
+      color: var(--ink-faint);
+      margin-bottom: 10px;
+    }
+
+    .usecase h3 {
+      font-family: var(--display);
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .usecase p {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+    }
+
+    .usecase .stat {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* ---------- Split with mock ---------- */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .split p.body {
+      color: var(--ink-soft);
+      margin: 0 0 14px;
+      font-size: 1rem;
+      max-width: 42ch;
+    }
+
+    .mock-panel {
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: 14px;
+      aspect-ratio: 4/3.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-faint);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 26px;
+      box-shadow: 0 10px 30px rgba(27, 32, 39, 0.05);
+    }
+
+    /* ---------- Quotes ---------- */
+    .quotes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 780px) {
+      .quotes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .quote-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--slate-tint);
+      border: 1px solid var(--slate-line);
+      margin-bottom: 14px;
+    }
+
+    .quote-name {
+      font-weight: 700;
+      font-size: 0.94rem;
+    }
+
+    .quote-role {
+      font-size: 0.82rem;
+      color: var(--ink-faint);
+    }
+
+    /* ---------- Stats ---------- */
+    .stats-band {
+      background: var(--slate-dark);
+      color: var(--white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 780px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-block .num {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      color: var(--yellow);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .stat-block .label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .stat-block .desc {
+      color: #b9c2ca;
+      font-size: 0.9rem;
+    }
+
+    /* ---------- Comparison table ---------- */
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    table.compare th,
+    table.compare td {
+      padding: 16px 20px;
+      text-align: left;
+      border-bottom: 1px solid var(--slate-line);
+      font-size: 0.92rem;
+    }
+
+    table.compare thead th {
+      background: var(--bg-alt);
+      color: var(--ink-faint);
+      font-weight: 600;
+      font-size: 0.82rem;
+    }
+
+    table.compare thead th.us {
+      color: var(--ink);
+    }
+
+    table.compare tbody th {
+      font-weight: 700;
+    }
+
+    table.compare td.us {
+      color: var(--slate-dark);
+      font-weight: 700;
+      background: #fbfbd8;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .table-scroll table {
+      min-width: 640px;
+    }
+
+    /* ---------- Trust strip ---------- */
+    .trust {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      justify-content: space-between;
+      background: var(--slate-tint);
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      padding: 26px 28px;
+    }
+
+    .trust p {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--ink-soft);
+      max-width: 30ch;
+    }
+
+    .trust-logos {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .trust-chip {
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+    }
+
+    .trust a.center {
+      color: var(--slate-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    /* ---------- Integrations ---------- */
+    .integrations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 780px) {
+      .integrations-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .int-col .int-label {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+
+    .int-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .int-tile {
+      height: 44px;
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: 7px;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq {
+      background: var(--bg-alt);
+    }
+
+    .faq-head {
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 40px;
+    }
+
+    .faq-list {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--slate-line);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--slate-line);
+      padding: 20px 24px;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .faq-q .plus {
+      color: var(--slate);
+      font-size: 1.1rem;
+    }
+
+    .faq-a {
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      max-width: 60ch;
+    }
+
+    /* ---------- CTA band ---------- */
+    .cta-band {
+      background: var(--ink);
+      color: var(--white);
+      text-align: center;
+      padding: 96px 0;
+    }
+
+    .cta-band h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      margin: 0 0 28px;
+    }
+
+    .cta-band .btn.primary {
+      padding: 13px 30px;
+      font-size: 0.96rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--slate-dark);
+      color: #c3cbd2;
+      padding: 64px 0 40px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 780px) {
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    footer .flogo {
+      font-family: var(--display);
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    footer .flogo .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    footer .fcol h4 {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: #9aa5ae;
+      letter-spacing: 0.03em;
+      margin: 0 0 14px;
+    }
+
+    footer .fcol a {
+      display: block;
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+      color: #c3cbd2;
+    }
+
+    footer .fcol a:hover {
+      color: var(--white);
+    }
+
+    footer .fbottom {
+      border-top: 1px solid #46505b;
+      padding-top: 24px;
+      font-size: 0.8rem;
+      color: #8b95a0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="logo"><span class="dot"></span>Leadvision AI</div>
+      <nav class="nav-links">
+        <a href="#products">Product</a>
+        <a href="07-company.html">Company</a>
+      </nav>
+      <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-tag"><span class="dot"></span>Built for Indian voice</span>
+        <h1>The voice AI stack for <span class="accent">India</span></h1>
+        <p class="lede">AI agents that call, transcribe, score and understand every customer conversation. Built for how
+          India actually speaks — Hinglish and code-switching performed flawlessly.</p>
+        <div class="hero-cta">
+          <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+          <a href="#products" class="btn btn-ghost">See the products</a>
+        </div>
+      </div>
+      <div class="wave-panel">
+        <div class="wp-top">
+          <span>CALL_042 · collections</span>
+          <span class="live"><span class="dot"></span>LIVE</span>
+        </div>
+        <div class="wave-bars">
+          <span style="height:34%"></span><span style="height:58%"></span><span style="height:22%"></span>
+          <span style="height:71%"></span><span style="height:45%"></span><span style="height:88%"></span>
+          <span style="height:30%"></span><span style="height:63%"></span><span style="height:40%"></span>
+          <span style="height:75%"></span><span style="height:20%"></span><span style="height:55%"></span>
+          <span style="height:66%"></span><span style="height:38%"></span><span style="height:82%"></span>
+          <span style="height:28%"></span><span style="height:50%"></span><span style="height:60%"></span>
+          <span style="height:35%"></span><span style="height:72%"></span><span style="height:44%"></span>
+          <span style="height:90%"></span><span style="height:26%"></span><span style="height:57%"></span>
+        </div>
+        <div class="wp-bottom"><span>hi-EN · hinglish detected</span><span>2:14</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <div class="strip-label">// advisors</div>
+      <div class="logo-row">
+        <div class="logo-chip">Partner / college logo</div>
+        <div class="logo-chip">Partner / college logo</div>
+        <div class="logo-chip">Partner / college logo</div>
+        <div class="logo-chip">Partner / college logo</div>
+        <div class="logo-chip">Partner / college logo</div>
+        <div class="logo-chip">Partner / college logo</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="products">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Five products, one stack</h2>
+      </div>
+      <div class="products-grid">
+        <div class="card">
+          <div class="card-icon">01</div>
+          <h3>Voice AI Agent</h3>
+          <p>AI agents that make and take customer calls in Hindi, English and Hinglish.</p>
+          <a class="learn" href="02-voice-ai-agent.html">Learn more →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">02</div>
+          <h3>Speech-to-Text</h3>
+          <p>Turns call recordings and live calls into accurate text, in real time.</p>
+          <a class="learn" href="03-speech-to-text.html">Learn more →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">03</div>
+          <h3>Text-to-Speech</h3>
+          <p>Natural-sounding Indian voices for IVR, agents and alerts.</p>
+          <a class="learn" href="04-text-to-speech.html">Learn more →</a>
+        </div>
+      </div>
+      <div class="products-grid row2">
+        <div class="card">
+          <div class="card-icon">04</div>
+          <h3>QA &amp; Analytics</h3>
+          <p>Scores 100% of calls against your own scorecard, automatically.</p>
+          <a class="learn" href="05-qa-analytics.html">Learn more →</a>
+        </div>
+        <div class="card">
+          <div class="card-icon">05</div>
+          <h3>Consumer Insights</h3>
+          <p>Shows what customers are calling about, and why, across every call.</p>
+          <a class="learn" href="06-consumer-insights.html">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recordings">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Listen to real calls, handled by the AI agent</h2>
+        <p>Hear how the agent handles different use cases, in the customer's own language.</p>
+      </div>
+      <div class="tabs">
+        <div class="tab active">Collections</div>
+        <div class="tab">Sales</div>
+        <div class="tab">Support</div>
+      </div>
+      <div class="call-list">
+        <div class="call-row">
+          <div class="play">▶</div>
+          <div class="call-title">Payment reminder call</div>
+          <div class="pill">HINGLISH</div>
+          <div class="call-time">2:14</div>
+        </div>
+        <div class="call-row">
+          <div class="play">▶</div>
+          <div class="call-title">Overdue account follow-up</div>
+          <div class="pill">HINDI</div>
+          <div class="call-time">3:02</div>
+        </div>
+        <div class="call-row">
+          <div class="play">▶</div>
+          <div class="call-title">Settlement offer call</div>
+          <div class="pill">ENGLISH</div>
+          <div class="call-time">1:48</div>
+        </div>
+      </div>
+      <p class="fine-print">Recordings are masked — customer details removed.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Built for how your team already works</h2>
+      </div>
+      <div class="usecase-grid">
+        <div class="usecase">
+          <div class="tag">BFSI</div>
+          <h3>Collections</h3>
+          <p>Agents can only call a fraction of overdue accounts each day.</p>
+          <div class="stat">[XX]% more accounts reached per day.</div>
+        </div>
+        <div class="usecase">
+          <div class="tag">REAL ESTATE</div>
+          <h3>Lead qualification</h3>
+          <p>Sales teams spend hours calling leads that never convert.</p>
+          <div class="stat">[XX]% of leads qualified before a human calls.</div>
+        </div>
+        <div class="usecase">
+          <div class="tag">E-COMMERCE</div>
+          <h3>Customer support</h3>
+          <p>Support queues grow fastest during sales and returns spikes.</p>
+          <div class="stat">[XX] ms average response time.</div>
+        </div>
+        <div class="usecase">
+          <div class="tag">INSURANCE</div>
+          <h3>Renewals &amp; retention</h3>
+          <p>Renewal reminders get made late or not at all.</p>
+          <div class="stat">[XX]% of renewals contacted on time.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split">
+      <div>
+        <h2
+          style="font-family:var(--display); font-weight:600; font-size:clamp(1.7rem,3vw,2.15rem); letter-spacing:-0.015em; margin:0 0 20px;">
+          See every call, scored the same way</h2>
+        <p class="body">Every call is scored against your own scorecard, not a sample.</p>
+        <p class="body">Each score comes with the exact moment in the call that backs it up.</p>
+        <p class="body">Trends across agents, teams and time, updated as calls come in.</p>
+      </div>
+      <div class="mock-panel">Dashboard mock — one scored call with pass/fail checks, plus a 7-day trend chart</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head" style="margin-bottom:36px;">
+        <h2>Quotes</h2>
+      </div>
+      <div class="quotes-grid">
+        <div>
+          <div class="quote-avatar"></div>
+          <div class="quote-name">[Advisor name]</div>
+          <div class="quote-role">[Role, organisation]</div>
+        </div>
+        <div>
+          <div class="quote-avatar"></div>
+          <div class="quote-name">[Advisor name]</div>
+          <div class="quote-role">[Role, organisation]</div>
+        </div>
+        <div>
+          <div class="quote-avatar"></div>
+          <div class="quote-name">[Advisor name]</div>
+          <div class="quote-role">[Role, organisation]</div>
+        </div>
+        <div>
+          <div class="quote-avatar"></div>
+          <div class="quote-name">[Advisor name]</div>
+          <div class="quote-role">[Role, organisation]</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-band">
+    <div class="wrap stats-grid">
+      <div class="stat-block">
+        <div class="num">[XX]%</div>
+        <div class="label">of calls reviewed, not just a sample.</div>
+        <div class="desc">Every call is scored, so nothing slips through.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">[XX] hrs</div>
+        <div class="label">saved per week on manual call reviews.</div>
+        <div class="desc">QA time goes into coaching instead of listening.</div>
+      </div>
+      <div class="stat-block">
+        <div class="num">[XX] ms</div>
+        <div class="label">average agent response time.</div>
+        <div class="desc">Customers get an answer without waiting on hold.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why teams switch to Leadvision AI</h2>
+      </div>
+      <div class="table-scroll">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Doing it manually</th>
+              <th>Other vendors</th>
+              <th class="us">Leadvision AI</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Call coverage</th>
+              <td>A small sample</td>
+              <td>A larger sample</td>
+              <td class="us">100% of calls</td>
+            </tr>
+            <tr>
+              <th>Languages</th>
+              <td>Depends on agent</td>
+              <td>English mostly</td>
+              <td class="us">Hindi, English, Hinglish</td>
+            </tr>
+            <tr>
+              <th>Evidence behind a score</th>
+              <td>Agent's notes</td>
+              <td>Score only</td>
+              <td class="us">Exact quoted moment</td>
+            </tr>
+            <tr>
+              <th>Setup time</th>
+              <td>Not applicable</td>
+              <td>[XX] weeks</td>
+              <td class="us">[XX] days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="trust">
+        <p>All call data is stored in data centres located in India.</p>
+        <div class="trust-logos">
+          <div class="trust-chip">[cert placeholder]</div>
+          <div class="trust-chip">[cert placeholder]</div>
+          <div class="trust-chip">[cert placeholder]</div>
+          <div class="trust-chip">[cert placeholder]</div>
+        </div>
+        <a href="#" class="center">Trust Center →</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Fits into what you already use</h2>
+      </div>
+      <div class="integrations-grid">
+        <div class="int-col">
+          <div class="int-label">DIALERS</div>
+          <div class="int-tiles">
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+          </div>
+        </div>
+        <div class="int-col">
+          <div class="int-label">CRMS</div>
+          <div class="int-tiles">
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+          </div>
+        </div>
+        <div class="int-col">
+          <div class="int-label">DATA &amp; BI</div>
+          <div class="int-tiles">
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+          </div>
+        </div>
+        <div class="int-col">
+          <div class="int-label">API</div>
+          <div class="int-tiles">
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+            <div class="int-tile"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="faq-head">
+        <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently
+          asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q"><span>How does pricing work?</span><span class="plus">–</span></div>
+          <div class="faq-a">Pricing is based on call volume and the products you use. We'll work out a plan with you on
+            a call.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Is AI calling legal in India?</span><span class="plus">+</span></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Where is our call data stored?</span><span class="plus">+</span></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Which languages are supported?</span><span class="plus">+</span></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How long does setup take?</span><span class="plus">+</span></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>How is accuracy measured?</span><span class="plus">+</span></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Can it integrate with our existing dialer or CRM?</span><span class="plus">+</span>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Do you offer a trial?</span><span class="plus">+</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" id="demo">
+    <div class="wrap">
+      <h2>Ready to see it on your own calls?</h2>
+      <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+    </div>
+  </section>
+
+  <footer id="company">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="flogo"><span class="dot"></span>Leadvision AI</div>
+        </div>
+        <div class="fcol">
+          <h4>PRODUCTS</h4>
+          <a href="02-voice-ai-agent.html">Voice AI Agent</a>
+          <a href="03-speech-to-text.html">Speech-to-Text</a>
+          <a href="04-text-to-speech.html">Text-to-Speech</a>
+          <a href="05-qa-analytics.html">QA &amp; Analytics</a>
+          <a href="06-consumer-insights.html">Consumer Insights</a>
+        </div>
+        <div class="fcol">
+          <h4>COMPANY</h4>
+          <a href="07-company.html">About</a>
+          <a href="07-company.html">Advisors</a>
+          <a href="07-company.html#hiring">Careers</a>
+        </div>
+        <div class="fcol">
+          <h4>CONTACT</h4>
+          <a href="08-book-a-demo.html">Book a demo</a>
+          <a href="#">Sales</a>
+          <a href="#">Support</a>
+        </div>
+        <div class="fcol">
+          <h4>LEGAL</h4>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms of service</a>
+          <a href="#">Trust Center</a>
+        </div>
+      </div>
+      <div class="fbottom">© 2026 Leadvision AI</div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

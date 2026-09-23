@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Demo Booked — Leadvision AI</title>
+<meta name="description" content="Your demo has been booked. We'll reach out within one business day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1b2027; --ink-soft: #55606b; --ink-faint: #8a939c;
+    --slate: #6f8090; --slate-dark: #333c46; --slate-tint: #eef1f3; --slate-line: #dde2e6;
+    --yellow: #eae948; --yellow-deep: #9d9c1e; --red: #bd2525;
+    --bg: #fbfaf7; --bg-alt: #f4f2ec; --white: #ffffff; --radius: 10px;
+    --display: 'Space Grotesk', var(--sans);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', monospace;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; min-height: 100vh; display: flex; flex-direction: column; }
+  a { color: inherit; text-decoration: none; }
+
+  header.nav { position: sticky; top: 0; z-index: 40; background: rgba(251,250,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--slate-line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: var(--white); padding: 11px 20px; border-radius: 0; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); cursor: pointer; transition: background 0.15s ease, border-color .15s ease; }
+  .btn:hover { background: var(--slate-dark); border-color: var(--slate-dark); }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { background: #a11f1f; border-color: #a11f1f; }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  .success-page { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 32px; }
+  .success-icon { width: 72px; height: 72px; border-radius: 50%; background: #dcf5e0; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 28px; }
+  .success-page h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 14px; }
+  .success-page p { color: var(--ink-soft); font-size: 1rem; margin: 0 0 32px; max-width: 40ch; margin-left: auto; margin-right: auto; }
+  .success-page .link-back { font-weight: 600; color: var(--ink); border-bottom: 2px solid var(--yellow); padding-bottom: 2px; }
+  .success-page .link-back:hover { color: var(--red); border-color: var(--red); }
+
+  footer { background: var(--slate-dark); color: #c3cbd2; padding: 40px 0 28px; }
+  footer .fbottom { font-size: 0.8rem; color: #8b95a0; text-align: center; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="leadvision-homepage-v2.html" class="logo"><span class="dot"></span>Leadvision AI</a>
+    <nav class="nav-links">
+      <a href="leadvision-homepage-v2.html#products">Product</a>
+      <a href="07-company.html">Company</a>
+    </nav>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</header>
+
+<main class="success-page">
+  <div>
+    <div class="success-icon">✓</div>
+    <h1>You're booked.</h1>
+    <p>We'll reach out within one business day to confirm a time that works for you.</p>
+    <a href="leadvision-homepage-v2.html" class="link-back">← Back to homepage</a>
+  </div>
+</main>
+
+<footer>
+  <div class="fbottom">© 2026 Leadvision AI</div>
+</footer>
+
+</body>
+</html>

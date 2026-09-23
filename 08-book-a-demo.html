@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a Demo — Leadvision AI</title>
+<meta name="description" content="Book a 30-minute demo to see how Leadvision AI works with your calls.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ===== SHARED DESIGN SYSTEM ===== */
+  :root {
+    --ink: #1b2027; --ink-soft: #55606b; --ink-faint: #8a939c;
+    --slate: #6f8090; --slate-dark: #333c46; --slate-tint: #eef1f3; --slate-line: #dde2e6;
+    --yellow: #eae948; --yellow-deep: #9d9c1e; --red: #bd2525;
+    --bg: #fbfaf7; --bg-alt: #f4f2ec; --white: #ffffff; --radius: 10px;
+    --display: 'Space Grotesk', var(--sans);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', monospace;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  header.nav { position: sticky; top: 0; z-index: 40; background: rgba(251,250,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--slate-line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: var(--white); padding: 11px 20px; border-radius: 0; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); cursor: pointer; transition: background 0.15s ease, border-color .15s ease; }
+  .btn:hover { background: var(--slate-dark); border-color: var(--slate-dark); }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { background: #a11f1f; border-color: #a11f1f; }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  footer { background: var(--slate-dark); color: #c3cbd2; padding: 64px 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+  @media (max-width: 780px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  footer .flogo { font-family: var(--display); color: var(--white); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  footer .flogo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  footer .fcol h4 { font-family: var(--mono); font-size: 0.72rem; color: #9aa5ae; letter-spacing: 0.03em; margin: 0 0 14px; }
+  footer .fcol a { display: block; font-size: 0.88rem; margin-bottom: 10px; color: #c3cbd2; }
+  footer .fcol a:hover { color: var(--white); }
+  footer .fbottom { border-top: 1px solid #46505b; padding-top: 24px; font-size: 0.8rem; color: #8b95a0; }
+
+  /* ===== PAGE-SPECIFIC ===== */
+  .demo-page { padding: 80px 0 100px; }
+  .demo-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
+  @media (max-width: 880px) { .demo-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.6vw, 2.4rem); line-height: 1.12; letter-spacing: -0.015em; margin: 0 0 14px; }
+  .demo-grid .lede { font-size: 1rem; color: var(--ink-soft); margin: 0 0 36px; max-width: 44ch; }
+
+  /* Form */
+  .form-group { margin-bottom: 22px; }
+  .form-group label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 7px; color: var(--ink); }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1px solid var(--slate-line); border-radius: 6px; font-size: 0.92rem; font-family: var(--sans); color: var(--ink); background: var(--white); transition: border-color .15s ease; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--ink); }
+  .form-group textarea { resize: vertical; min-height: 80px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+  .prefer-label { font-size: 0.85rem; color: var(--ink-soft); margin-bottom: 10px; }
+  .prefer-row { display: flex; gap: 10px; margin-bottom: 28px; }
+  .prefer-btn { padding: 9px 18px; border: 1px solid var(--slate-line); border-radius: 6px; font-size: 0.86rem; font-weight: 500; color: var(--ink-soft); background: var(--white); cursor: pointer; transition: all .15s ease; }
+  .prefer-btn.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .submit-btn { width: 100%; padding: 14px 20px; }
+
+  /* Right column — trust panel */
+  .trust-panel { background: var(--bg-alt); border-radius: 14px; padding: 40px 36px; }
+  .trust-panel h3 { font-family: var(--display); font-size: 1.15rem; font-weight: 600; margin: 0 0 24px; }
+  .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .logo-block { background: var(--white); border: 1px solid var(--slate-line); border-radius: 8px; aspect-ratio: 2/1; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.72rem; color: var(--ink-faint); }
+  .trust-list { list-style: none; padding: 0; margin: 0; }
+  .trust-list li { padding: 10px 0; border-bottom: 1px solid var(--slate-line); font-size: 0.9rem; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; }
+  .trust-list li:last-child { border-bottom: none; }
+  .trust-check { color: var(--red); font-weight: 700; font-size: 0.96rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="leadvision-homepage-v2.html" class="logo"><span class="dot"></span>Leadvision AI</a>
+    <nav class="nav-links">
+      <a href="leadvision-homepage-v2.html#products">Product</a>
+      <a href="07-company.html">Company</a>
+    </nav>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</header>
+
+<!-- ===== DEMO FORM ===== -->
+<section class="demo-page">
+  <div class="wrap demo-grid">
+
+    <!-- LEFT — FORM -->
+    <div>
+      <h1>Book a demo</h1>
+      <p class="lede">30-minute call to see how Leadvision AI works with your calls.</p>
+
+      <form id="demo-form" action="08a-success.html" method="GET">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" name="fname" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" name="lname" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" required>
+        </div>
+        <div class="form-group">
+          <label for="agents">How many agents on your team?</label>
+          <select id="agents" name="agents">
+            <option value="" disabled selected>Select</option>
+            <option value="1-10">1 – 10</option>
+            <option value="11-50">11 – 50</option>
+            <option value="51-200">51 – 200</option>
+            <option value="201-500">201 – 500</option>
+            <option value="500+">500+</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="interest">What are you most interested in?</label>
+          <select id="interest" name="interest">
+            <option value="" disabled selected>Select</option>
+            <option value="voice-agent">Voice AI Agent</option>
+            <option value="stt">Speech-to-Text</option>
+            <option value="tts">Text-to-Speech</option>
+            <option value="qa">QA &amp; Analytics</option>
+            <option value="insights">Consumer Insights</option>
+            <option value="all">All of the above</option>
+          </select>
+        </div>
+
+        <p class="prefer-label">Preferred contact method</p>
+        <div class="prefer-row">
+          <div class="prefer-btn active" data-pref="email">Email</div>
+          <div class="prefer-btn" data-pref="phone">Phone</div>
+          <div class="prefer-btn" data-pref="whatsapp">WhatsApp</div>
+        </div>
+
+        <button type="submit" class="btn primary submit-btn">Book a demo →</button>
+      </form>
+    </div>
+
+    <!-- RIGHT — TRUST PANEL -->
+    <div class="trust-panel">
+      <h3>Trusted by</h3>
+      <div class="logo-grid">
+        <div class="logo-block">[logo]</div>
+        <div class="logo-block">[logo]</div>
+        <div class="logo-block">[logo]</div>
+        <div class="logo-block">[logo]</div>
+        <div class="logo-block">[logo]</div>
+        <div class="logo-block">[logo]</div>
+      </div>
+      <ul class="trust-list">
+        <li><span class="trust-check">✓</span> 30-minute call, no commitment</li>
+        <li><span class="trust-check">✓</span> See it running on your own call audio</li>
+        <li><span class="trust-check">✓</span> Get a scorecard sample for your use case</li>
+        <li><span class="trust-check">✓</span> Talk to the engineering team directly</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div><div class="flogo"><span class="dot"></span>Leadvision AI</div></div>
+      <div class="fcol">
+        <h4>PRODUCTS</h4>
+        <a href="02-voice-ai-agent.html">Voice AI Agent</a>
+        <a href="03-speech-to-text.html">Speech-to-Text</a>
+        <a href="04-text-to-speech.html">Text-to-Speech</a>
+        <a href="05-qa-analytics.html">QA &amp; Analytics</a>
+        <a href="06-consumer-insights.html">Consumer Insights</a>
+      </div>
+      <div class="fcol">
+        <h4>COMPANY</h4>
+        <a href="07-company.html">About</a>
+        <a href="07-company.html#hiring">Careers</a>
+      </div>
+      <div class="fcol">
+        <h4>CONTACT</h4>
+        <a href="08-book-a-demo.html">Book a demo</a>
+        <a href="#">Sales</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="fcol">
+        <h4>LEGAL</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Trust Center</a>
+      </div>
+    </div>
+    <div class="fbottom">© 2026 Leadvision AI</div>
+  </div>
+</footer>
+
+<script>
+// Contact preference toggle
+document.querySelectorAll('.prefer-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.prefer-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

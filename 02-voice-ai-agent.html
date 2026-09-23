@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voice AI Agent — Leadvision AI</title>
+<meta name="description" content="AI agents that make and take customer calls in Hindi, English and Hinglish. Built for Indian call centres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  /* ===== SHARED DESIGN SYSTEM ===== */
+  :root {
+    --ink: #1b2027; --ink-soft: #55606b; --ink-faint: #8a939c;
+    --slate: #6f8090; --slate-dark: #333c46; --slate-tint: #eef1f3; --slate-line: #dde2e6;
+    --yellow: #eae948; --yellow-deep: #9d9c1e; --red: #bd2525;
+    --bg: #fbfaf7; --bg-alt: #f4f2ec; --white: #ffffff; --radius: 10px;
+    --display: 'Space Grotesk', var(--sans);
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Space Mono', monospace;
+    box-sizing: border-box;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; line-height: 1.55; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  @media (max-width: 640px) { .wrap { padding: 0 20px; } }
+
+  /* Nav */
+  header.nav { position: sticky; top: 0; z-index: 40; background: rgba(251,250,247,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--slate-line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1120px; margin: 0 auto; }
+  .logo { font-family: var(--display); font-weight: 700; font-size: 1.12rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); display: inline-block; }
+  .nav-links { display: flex; gap: 32px; font-size: 0.92rem; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--ink); color: var(--white); padding: 11px 20px; border-radius: 0; font-size: 0.9rem; font-weight: 600; border: 1px solid var(--ink); cursor: pointer; transition: background 0.15s ease, border-color .15s ease; }
+  .btn:hover { background: var(--slate-dark); border-color: var(--slate-dark); }
+  .btn.primary { background: var(--red); border-color: var(--red); }
+  .btn.primary:hover { background: #a11f1f; border-color: #a11f1f; }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--slate-line); }
+  .btn-ghost:hover { border-color: var(--slate); }
+  @media (max-width: 780px) { .nav-links { display: none; } }
+
+  /* Section shell */
+  section { padding: 92px 0; }
+  .section-head { max-width: 640px; margin-bottom: 46px; }
+  .section-head h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.7rem, 3vw, 2.15rem); letter-spacing: -0.015em; margin: 0 0 12px; }
+  .section-head p { color: var(--ink-soft); font-size: 1rem; margin: 0; }
+
+  /* FAQ */
+  .faq { background: var(--bg-alt); }
+  .faq-head { text-align: center; max-width: 520px; margin: 0 auto 40px; }
+  .faq-list { max-width: 760px; margin: 0 auto; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  .faq-item { border-bottom: 1px solid var(--slate-line); padding: 20px 24px; cursor: pointer; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-q { display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 0.96rem; }
+  .faq-q .plus { color: var(--slate); font-size: 1.1rem; }
+  .faq-a { color: var(--ink-soft); font-size: 0.9rem; margin-top: 10px; max-width: 60ch; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-q .plus { transform: rotate(45deg); }
+
+  /* CTA band */
+  .cta-band { background: var(--ink); color: var(--white); text-align: center; padding: 96px 0; }
+  .cta-band h2 { font-family: var(--display); font-weight: 600; font-size: clamp(1.8rem, 3.4vw, 2.4rem); margin: 0 0 28px; }
+  .cta-band .btn.primary { padding: 13px 30px; font-size: 0.96rem; }
+
+  /* Footer */
+  footer { background: var(--slate-dark); color: #c3cbd2; padding: 64px 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; margin-bottom: 40px; }
+  @media (max-width: 780px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+  footer .flogo { font-family: var(--display); color: var(--white); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  footer .flogo .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  footer .fcol h4 { font-family: var(--mono); font-size: 0.72rem; color: #9aa5ae; letter-spacing: 0.03em; margin: 0 0 14px; }
+  footer .fcol a { display: block; font-size: 0.88rem; margin-bottom: 10px; color: #c3cbd2; }
+  footer .fcol a:hover { color: var(--white); }
+  footer .fbottom { border-top: 1px solid #46505b; padding-top: 24px; font-size: 0.8rem; color: #8b95a0; }
+
+  /* ===== PAGE-SPECIFIC ===== */
+
+  /* Hero */
+  .hero { padding: 92px 0 76px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: center; }
+  @media (max-width: 880px) { .hero-grid { grid-template-columns: 1fr; } }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2.1rem, 4.2vw, 3rem); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 22px; }
+  .hero p.lede { font-size: 1.05rem; color: var(--ink-soft); max-width: 46ch; margin: 0 0 30px; }
+  .hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+
+  .wave-panel { background: var(--slate-dark); border-radius: 16px; aspect-ratio: 4/3.1; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+  .wave-panel .wp-top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 0.7rem; color: #b9c2ca; }
+  .wave-panel .live { display: flex; align-items: center; gap: 6px; }
+  .wave-panel .live .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+  .wp-chat { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px; padding: 16px 0; }
+  .chat-bubble { max-width: 80%; padding: 12px 16px; border-radius: 10px; font-size: 0.85rem; line-height: 1.45; }
+  .chat-bubble.customer { background: #414b56; color: #d0d6dc; align-self: flex-end; }
+  .chat-bubble.agent { background: var(--yellow); color: var(--ink); align-self: flex-start; }
+  .chat-bubble .label { font-family: var(--mono); font-size: 0.65rem; font-weight: 700; margin-bottom: 4px; display: block; }
+  .wave-panel .wp-bottom { font-family: var(--mono); font-size: 0.7rem; color: #8b95a0; display: flex; justify-content: space-between; }
+
+  /* Stats strip */
+  .stats-strip { background: var(--bg-alt); border-top: 1px solid var(--slate-line); border-bottom: 1px solid var(--slate-line); padding: 52px 0; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
+  @media (max-width: 640px) { .stats-row { grid-template-columns: 1fr; } }
+  .stat-num { font-family: var(--display); font-size: 2.5rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .stat-label { font-size: 0.88rem; color: var(--ink-soft); }
+  .stats-fine { text-align: center; color: var(--ink-faint); font-size: 0.78rem; margin-top: 18px; }
+
+  /* Talk to it live */
+  .demo-section { padding: 92px 0; }
+  .demo-tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+  .demo-tab { padding: 8px 18px; border-radius: 20px; font-size: 0.88rem; font-weight: 600; background: var(--slate-tint); color: var(--ink-soft); border: 1px solid var(--slate-line); cursor: pointer; transition: all .15s ease; }
+  .demo-tab.active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .demo-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; min-height: 260px; }
+  @media (max-width: 780px) { .demo-panel { grid-template-columns: 1fr; } }
+  .demo-left { background: var(--slate-dark); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .demo-left .wp-bottom { font-family: var(--mono); font-size: 0.7rem; color: #8b95a0; }
+  .demo-right { background: var(--white); border: 1px solid var(--slate-line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 14px; justify-content: flex-end; }
+
+  /* Recordings */
+  .recordings { background: var(--bg-alt); }
+  .call-list { background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); overflow: hidden; }
+  .call-row { display: flex; align-items: center; gap: 16px; padding: 18px 22px; border-bottom: 1px solid var(--slate-line); font-size: 0.94rem; }
+  .call-row:last-child { border-bottom: none; }
+  .play { width: 32px; height: 32px; border-radius: 50%; background: var(--slate-tint); color: var(--slate-dark); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; flex-shrink: 0; cursor: pointer; }
+  .call-title { flex: 1; font-weight: 600; }
+  .pill { font-family: var(--mono); font-size: 0.72rem; color: var(--slate-dark); background: var(--slate-tint); border: 1px solid var(--slate-line); padding: 3px 9px; border-radius: 20px; }
+  .call-time { font-family: var(--mono); color: var(--ink-faint); font-size: 0.82rem; width: 46px; text-align: right; }
+  .fine-print { color: var(--ink-faint); font-size: 0.8rem; margin-top: 16px; }
+
+  /* Live in 3 steps */
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: center; }
+  @media (max-width: 640px) { .steps-grid { grid-template-columns: 1fr; } }
+  .step-num { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 700; font-size: 1rem; margin: 0 auto 16px; }
+  .step-title { font-family: var(--display); font-weight: 600; font-size: 1.02rem; margin-bottom: 8px; }
+  .step-desc { font-size: 0.88rem; color: var(--ink-soft); max-width: 28ch; margin: 0 auto; }
+
+  /* Feature grid */
+  .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 780px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
+  .feature-card { background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); padding: 28px 24px; }
+  .feature-icon { width: 42px; height: 42px; background: var(--slate-tint); border-radius: 9px; margin-bottom: 16px; }
+  .feature-card h3 { font-family: var(--display); font-size: 1rem; font-weight: 600; margin: 0 0 8px; }
+  .feature-card p { color: var(--ink-soft); font-size: 0.88rem; margin: 0; }
+
+  /* Use cases */
+  .usecase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 640px) { .usecase-grid { grid-template-columns: repeat(2, 1fr); } }
+  .usecase-item { display: flex; align-items: center; gap: 10px; padding: 16px 20px; background: var(--white); border: 1px solid var(--slate-line); border-radius: var(--radius); font-size: 0.94rem; font-weight: 500; }
+  .usecase-item .arrow { color: var(--ink-faint); font-size: 0.82rem; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="leadvision-homepage-v2.html" class="logo"><span class="dot"></span>Leadvision AI</a>
+    <nav class="nav-links">
+      <a href="leadvision-homepage-v2.html#products">Product</a>
+      <a href="07-company.html">Company</a>
+    </nav>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>An agent that stays on track through an hour-long call</h1>
+      <p class="lede">Speaks Hindi, English and Hinglish, switching mid-sentence the way your customers actually talk.</p>
+      <div class="hero-cta">
+        <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+        <span style="display:inline-flex; align-items:center; gap:8px; color:var(--ink-soft); font-size:0.92rem;">
+          <span style="font-family:var(--mono); color:var(--ink-faint);">+91</span>
+          <span>Your phone number</span>
+          <a href="#" style="font-weight:600; color:var(--ink); border-bottom:1px solid var(--yellow); padding-bottom:1px;">Get a call now</a>
+        </span>
+      </div>
+    </div>
+    <div class="wave-panel">
+      <div class="wp-top">
+        <span>VOICE DEMO — call flow, collections</span>
+        <span class="live"><span class="dot"></span>LIVE</span>
+      </div>
+      <div class="wp-chat">
+        <div class="chat-bubble customer">
+          <span class="label">Customer</span>
+          Mera order abhi tak deliver nahi hua, kai promise kiya tha.
+        </div>
+        <div class="chat-bubble agent">
+          <span class="label">Agent</span>
+          I'm sorry about the delay. Let me check your order status right now.
+        </div>
+      </div>
+      <div class="wp-bottom">
+        <span>hi-EN · hinglish detected</span>
+        <span>1:42</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS STRIP ===== -->
+<div class="stats-strip">
+  <div class="wrap">
+    <div class="stats-row">
+      <div>
+        <div class="stat-num">[XX] ms</div>
+        <div class="stat-label">Average response time</div>
+      </div>
+      <div>
+        <div class="stat-num">[XX,XXX]</div>
+        <div class="stat-label">Calls handled</div>
+      </div>
+      <div>
+        <div class="stat-num">[XX]%</div>
+        <div class="stat-label">Resolution rate, one pilot</div>
+      </div>
+    </div>
+    <p class="stats-fine">Measured on [to be filled].</p>
+  </div>
+</div>
+
+<!-- ===== TALK TO IT LIVE ===== -->
+<section class="demo-section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Talk to it live</h2>
+      <p>Pick an agent and have a real conversation, right here.</p>
+    </div>
+    <div class="demo-tabs">
+      <div class="demo-tab active" data-tab="coach">Coach</div>
+      <div class="demo-tab" data-tab="sales">Sales</div>
+      <div class="demo-tab" data-tab="support">Support</div>
+    </div>
+    <div class="demo-panel">
+      <div class="demo-left">
+        <p style="font-family:var(--mono); font-size:0.75rem; color:#8b95a0; margin:0 0 12px;">LIVE DEMO — press to talk, transcript appears here.</p>
+      </div>
+      <div class="demo-right">
+        <div class="chat-bubble customer" style="background:var(--slate-tint); color:var(--ink); align-self:flex-end;">
+          <span class="label" style="color:var(--ink-faint);">Customer</span>
+          Mera order abhi tak deliver nahi hua, kai promise kiya tha.
+        </div>
+        <div class="chat-bubble agent" style="background:var(--ink); color:var(--white); align-self:flex-start;">
+          <span class="label" style="color:var(--yellow);">Agent</span>
+          I'm sorry about the delay. Let me check your order status right now.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LISTEN INSTEAD ===== -->
+<section class="recordings">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Not ready to talk to a demo? Listen instead.</h2>
+      <p>Recordings are masked — customer details removed.</p>
+    </div>
+    <div class="call-list">
+      <div class="call-row">
+        <div class="play">▶</div>
+        <div class="call-title">Payment reminder call</div>
+        <div class="pill">HINGLISH</div>
+        <div class="call-time">2:14</div>
+      </div>
+      <div class="call-row">
+        <div class="play">▶</div>
+        <div class="call-title">Order status enquiry</div>
+        <div class="pill">HINDI</div>
+        <div class="call-time">1:58</div>
+      </div>
+      <div class="call-row">
+        <div class="play">▶</div>
+        <div class="call-title">Appointment booking</div>
+        <div class="pill">ENGLISH</div>
+        <div class="call-time">3:05</div>
+      </div>
+      <div class="call-row">
+        <div class="play">▶</div>
+        <div class="call-title">Refund follow-up</div>
+        <div class="pill">HINGLISH</div>
+        <div class="call-time">2:47</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LIVE IN 3 STEPS ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <h2>Live in three steps</h2>
+    </div>
+    <div class="steps-grid">
+      <div>
+        <div class="step-num">1</div>
+        <div class="step-title">Connect your number</div>
+        <div class="step-desc">Point your existing number or dialer at the agent. No new hardware.</div>
+      </div>
+      <div>
+        <div class="step-num">2</div>
+        <div class="step-title">Set the goal</div>
+        <div class="step-desc">Tell it what a good call looks like, in plain language.</div>
+      </div>
+      <div>
+        <div class="step-num">3</div>
+        <div class="step-title">Go live</div>
+        <div class="step-desc">Start with a small slice of calls and expand from there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT THE AGENT HANDLES ===== -->
+<section style="background:var(--bg-alt);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What the agent handles on its own</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Language switching mid-sentence</h3>
+        <p>Follows the customer from Hindi to English and back, in the same sentence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Interruption handling</h3>
+        <p>Stops talking and listens the moment the customer speaks.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Live human handoff</h3>
+        <p>Passes the call to a person with full context, no repeating themselves.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Call summary written to your CRM</h3>
+        <p>Every call ends with a summary logged against the right record.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Follow-up scheduling</h3>
+        <p>Books the next call or reminder without anyone touching a calendar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"></div>
+        <h3>Works on poor phone lines</h3>
+        <p>Stays accurate on the call quality typical of Indian mobile networks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== USE CASES ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Use cases</h2>
+    </div>
+    <div class="usecase-grid">
+      <div class="usecase-item"><span class="arrow">▸</span> Payment reminders</div>
+      <div class="usecase-item"><span class="arrow">▸</span> Lead qualification</div>
+      <div class="usecase-item"><span class="arrow">▸</span> Appointment booking</div>
+      <div class="usecase-item"><span class="arrow">▸</span> Order status updates</div>
+      <div class="usecase-item"><span class="arrow">▸</span> Renewal calls</div>
+      <div class="usecase-item"><span class="arrow">▸</span> Feedback collection</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q"><span>How long does it take to go live?</span><span class="plus">–</span></div>
+        <div class="faq-a" style="display:block;">Setup time depends on the number of call flows involved. We'll confirm a timeline during onboarding.</div>
+      </div>
+      <div class="faq-item"><div class="faq-q"><span>Which languages does the agent speak?</span><span class="plus">+</span></div><div class="faq-a">Hindi, English, and Hinglish — including mid-sentence code-switching.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>How does handoff to a human work?</span><span class="plus">+</span></div><div class="faq-a">When the agent detects it needs to transfer, it passes the call along with full context so the customer doesn't repeat themselves.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>What are the DND and consent rules?</span><span class="plus">+</span></div><div class="faq-a">We follow TRAI regulations. DND lists are respected, and consent workflows are built into every campaign.</div></div>
+      <div class="faq-item"><div class="faq-q"><span>What happens if the agent gets stuck?</span><span class="plus">+</span></div><div class="faq-a">The agent gracefully transfers to a human. It never guesses or makes up information.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to see it on your own calls?</h2>
+    <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="flogo"><span class="dot"></span>Leadvision AI</div>
+      </div>
+      <div class="fcol">
+        <h4>PRODUCTS</h4>
+        <a href="02-voice-ai-agent.html">Voice AI Agent</a>
+        <a href="03-speech-to-text.html">Speech-to-Text</a>
+        <a href="04-text-to-speech.html">Text-to-Speech</a>
+        <a href="05-qa-analytics.html">QA &amp; Analytics</a>
+        <a href="06-consumer-insights.html">Consumer Insights</a>
+      </div>
+      <div class="fcol">
+        <h4>COMPANY</h4>
+        <a href="07-company.html">About</a>
+        <a href="07-company.html#hiring">Careers</a>
+      </div>
+      <div class="fcol">
+        <h4>CONTACT</h4>
+        <a href="08-book-a-demo.html">Book a demo</a>
+        <a href="#">Sales</a>
+        <a href="#">Support</a>
+      </div>
+      <div class="fcol">
+        <h4>LEGAL</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">Trust Center</a>
+      </div>
+    </div>
+    <div class="fbottom">© 2026 Leadvision AI</div>
+  </div>
+</footer>
+
+<script>
+// FAQ toggle
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-q').addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Demo tabs
+document.querySelectorAll('.demo-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
