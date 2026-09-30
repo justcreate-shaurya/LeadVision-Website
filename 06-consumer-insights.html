@@ -26,196 +26,132 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="wrap">
-    <h1>See what callers actually ask about — surfaced from every call.</h1>
-    <p class="lede">No surveys, no tagging, no guessing. Topics and trends surface automatically from your real conversations.</p>
+    <span class="eyebrow-tag"><span class="dot"></span>Consumer Insights</span>
+    <h1>See what callers actually ask about, <span class="accent">no surveys required</span>.</h1>
+    <p class="lede">Topics and trends surface automatically from your real conversations. No tagging, no guessing.</p>
     <div class="hero-cta">
       <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
     </div>
   </div>
 </section>
 
-<!-- ===== WHAT YOUR CALLERS ARE SAYING ===== -->
-<section class="bubble-section">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>What your callers are saying, right now</h2>
-    </div>
-    <div class="bubble-panel">
-      <div class="bubble-viz">
-        <div class="bubble" style="width:120px; height:120px; background:#bd2525; font-size:0.72rem;">Payment<br>issue</div>
-        <div class="bubble" style="width:95px; height:95px; background:#1b2027; font-size:0.68rem;">Refund<br>status</div>
-        <div class="bubble" style="width:80px; height:80px; background:#6f8090; font-size:0.64rem;">App login<br>error</div>
-        <div class="bubble" style="width:65px; height:65px; background:#333c46; font-size:0.60rem;">Delivery<br>delay</div>
-        <div class="bubble" style="width:55px; height:55px; background:#8a939c; font-size:0.56rem;">Pricing</div>
-        <div class="bubble" style="width:105px; height:105px; background:#55606b; font-size:0.68rem;">Account<br>update</div>
-        <div class="bubble" style="width:72px; height:72px; background:#bd2525cc; font-size:0.62rem;">Cancel</div>
-        <div class="bubble" style="width:50px; height:50px; background:#9d9c1e; font-size:0.54rem;">KYC</div>
-      </div>
-      <div class="bubble-legend">
-        <span><span class="legend-dot" style="background:var(--red);"></span> Rising</span>
-        <span><span class="legend-dot" style="background:var(--ink);"></span> Stable</span>
-        <span><span class="legend-dot" style="background:var(--slate);"></span> Declining</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== DASHBOARD NUMBERS ===== -->
-<section class="animate-up">
+<!-- ===== DASHBOARD SNAPSHOT ===== -->
+<section style="background:var(--bg-alt); padding:80px 0; border-top:1px solid var(--slate-line); border-bottom:1px solid var(--slate-line);">
   <div class="wrap">
     <div class="section-head">
       <h2>Snapshot</h2>
+      <p>Data pulled from your calls in real-time.</p>
     </div>
-    <div class="dash-grid">
-      <div class="dash-card">
-        <div class="dlabel">Top topic this week</div>
-        <div class="dvalue">[Payment issue]</div>
-        <div class="dsub">[XX]% of all calls</div>
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+      <!-- Dash Card 1 -->
+      <div style="background:var(--white); border:1px solid var(--slate-line); border-radius:16px; padding:32px; box-shadow:0 4px 16px rgba(0,0,0,0.02);">
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px;">Top topic this week</div>
+        <div style="font-family:var(--display); font-size:1.5rem; font-weight:700; color:var(--ink); margin-bottom:8px;">Payment issue</div>
+        <div style="font-size:0.9rem; color:var(--red); font-weight:600;">[XX]% of all calls</div>
       </div>
-      <div class="dash-card">
-        <div class="dlabel">Fastest rising</div>
-        <div class="dvalue">[Refund status]</div>
-        <div class="dsub">↑ [XX]% vs last week</div>
+      <!-- Dash Card 2 -->
+      <div style="background:var(--white); border:1px solid var(--slate-line); border-radius:16px; padding:32px; box-shadow:0 4px 16px rgba(0,0,0,0.02);">
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px;">Fastest rising</div>
+        <div style="font-family:var(--display); font-size:1.5rem; font-weight:700; color:var(--ink); margin-bottom:8px;">Refund status</div>
+        <div style="font-size:0.9rem; color:var(--ink-soft); font-weight:600;">↑ [XX]% vs last week</div>
       </div>
-      <div class="dash-card">
-        <div class="dlabel">Average sentiment</div>
-        <div class="dvalue">[XX] / 5</div>
-        <div class="dsub">Across [XX,XXX] calls</div>
-      </div>
-      <div class="dash-card">
-        <div class="dlabel">Topics detected</div>
-        <div class="dvalue">[XX]</div>
-        <div class="dsub">Across all campaigns</div>
-      </div>
-      <div class="dash-card">
-        <div class="dlabel">Calls analysed</div>
-        <div class="dvalue">[XX,XXX]</div>
-        <div class="dsub">This month</div>
-      </div>
-      <div class="dash-card">
-        <div class="dlabel">Reports generated</div>
-        <div class="dvalue">[XX]</div>
-        <div class="dsub">Automated weekly</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<section style="background:var(--bg-alt);">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Features</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Automatic topic detection</h3>
-        <p>Topics surface from the calls themselves — no predefined categories required.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Sentiment tracking</h3>
-        <p>See how sentiment shifts across topics, campaigns, and time.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Trend alerts</h3>
-        <p>Get notified when a topic spikes or sentiment drops.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Ask a question</h3>
-        <p>Type a question and get an answer grounded in call data.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Custom reports</h3>
-        <p>Build recurring reports around the topics and teams you care about.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Exportable</h3>
-        <p>Push insights to the dashboards and tools your team already uses.</p>
+      <!-- Dash Card 3 -->
+      <div style="background:var(--white); border:1px solid var(--slate-line); border-radius:16px; padding:32px; box-shadow:0 4px 16px rgba(0,0,0,0.02);">
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:12px;">Average sentiment</div>
+        <div style="font-family:var(--display); font-size:1.5rem; font-weight:700; color:var(--ink); margin-bottom:8px;">[XX] / 5</div>
+        <div style="font-size:0.9rem; color:var(--ink-soft); font-weight:600;">Across [XX,XXX] calls</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== ALERTS ===== -->
-<section class="alert-section">
-  <div class="wrap">
-    <div class="section-head">
+<section style="padding:80px 0;">
+  <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <div>
       <h2>Alerts that arrive before you ask</h2>
-      <p>Get notified when a topic spikes, sentiment drops, or a new issue appears.</p>
+      <p class="lede" style="margin-bottom:32px;">Get notified when a topic spikes, sentiment drops, or a brand new issue appears out of nowhere.</p>
+      
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <!-- Alert 1 -->
+        <div style="display:flex; gap:16px; background:var(--white); border:1px solid var(--red); border-radius:12px; padding:20px; box-shadow:0 8px 24px rgba(231,76,60,0.08);">
+          <div style="font-size:1.5rem;">🔴</div>
+          <div>
+            <div style="font-weight:700; color:var(--ink); margin-bottom:4px;">"Refund status" calls up 34% this week</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft);">252 calls mentioning refund delays since Monday.</div>
+          </div>
+          <div style="margin-left:auto; font-family:var(--mono); font-size:0.75rem; color:var(--ink-faint);">2h ago</div>
+        </div>
+        <!-- Alert 2 -->
+        <div style="display:flex; gap:16px; background:var(--white); border:1px solid var(--slate-line); border-radius:12px; padding:20px;">
+          <div style="font-size:1.5rem;">🟡</div>
+          <div>
+            <div style="font-weight:700; color:var(--ink); margin-bottom:4px;">Sentiment drop on "Delivery delay"</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft);">Average sentiment dropped from 3.2 to 2.1 over the last 3 days.</div>
+          </div>
+          <div style="margin-left:auto; font-family:var(--mono); font-size:0.75rem; color:var(--ink-faint);">5h ago</div>
+        </div>
+        <!-- Alert 3 -->
+        <div style="display:flex; gap:16px; background:var(--white); border:1px solid var(--slate-line); border-radius:12px; padding:20px;">
+          <div style="font-size:1.5rem;">🟢</div>
+          <div>
+            <div style="font-weight:700; color:var(--ink); margin-bottom:4px;">New topic detected: "App login error"</div>
+            <div style="font-size:0.9rem; color:var(--ink-soft);">Emerged in 47 calls since Tuesday. Not in any existing report.</div>
+          </div>
+          <div style="margin-left:auto; font-family:var(--mono); font-size:0.75rem; color:var(--ink-faint);">1d ago</div>
+        </div>
+      </div>
     </div>
-    <div class="alert-card">
-      <div class="alert-row">
-        <div class="alert-icon">🔴</div>
-        <div class="alert-content">
-          <div class="alert-title">"Refund status" calls up 34% this week</div>
-          <div class="alert-desc">252 calls mentioning refund delays since Monday.</div>
-        </div>
-        <div class="alert-time">2h ago</div>
-      </div>
-      <div class="alert-row">
-        <div class="alert-icon">🟡</div>
-        <div class="alert-content">
-          <div class="alert-title">Sentiment drop on "Delivery delay"</div>
-          <div class="alert-desc">Average sentiment dropped from 3.2 to 2.1 over the last 3 days.</div>
-        </div>
-        <div class="alert-time">5h ago</div>
-      </div>
-      <div class="alert-row">
-        <div class="alert-icon">🟢</div>
-        <div class="alert-content">
-          <div class="alert-title">New topic detected: "App login error"</div>
-          <div class="alert-desc">Emerged in 47 calls since Tuesday. Not in any existing report.</div>
-        </div>
-        <div class="alert-time">1d ago</div>
+    <!-- Right Graphic -->
+    <div style="background:var(--bg-alt); border:1px solid var(--slate-line); border-radius:24px; padding:40px; text-align:center; position:relative; min-height:400px; display:flex; align-items:center; justify-content:center;">
+      <div style="position:relative; width:100%; height:100%;">
+        <!-- Bubble Map Graphic -->
+        <div style="position:absolute; top:10%; left:20%; width:120px; height:120px; background:var(--red); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9rem; text-align:center; box-shadow:0 8px 24px rgba(231,76,60,0.3);">Payment<br>issue</div>
+        <div style="position:absolute; top:40%; left:50%; width:95px; height:95px; background:var(--ink); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8rem; text-align:center;">Refund<br>status</div>
+        <div style="position:absolute; top:70%; left:30%; width:80px; height:80px; background:var(--slate); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.75rem; text-align:center;">App login<br>error</div>
+        <div style="position:absolute; top:20%; left:65%; width:65px; height:65px; background:var(--ink-soft); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.7rem; text-align:center;">Delivery<br>delay</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FITS INTO YOUR SETUP ===== -->
-<section style="background:var(--bg-alt);">
+<!-- ===== FEATURES ===== -->
+<section style="background:var(--bg-alt); border-top:1px solid var(--slate-line); border-bottom:1px solid var(--slate-line);">
   <div class="wrap">
     <div class="section-head">
-      <h2>Fits into your existing setup</h2>
+      <h2>Features</h2>
     </div>
-    <div class="int-grid">
-      <div class="int-block">
-        <h3>Dialer</h3>
-        <p>Pulls in call recordings automatically from your existing dialer.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Automatic topic detection</h3>
+        <p>Topics surface from the calls themselves — no predefined categories required.</p>
       </div>
-      <div class="int-block">
-        <h3>BI tools</h3>
-        <p>Topic and sentiment data can be piped to your BI dashboards.</p>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Sentiment tracking</h3>
+        <p>See how sentiment shifts across topics, campaigns, and time.</p>
       </div>
-      <div class="int-block">
-        <h3>Slack / Email</h3>
-        <p>Alerts delivered where your team already looks.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Trend alerts</h3>
+        <p>Get notified when a topic spikes or sentiment drops.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="faq">
-  <div class="wrap">
-    <div class="faq-head">
-      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently asked questions</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <div class="faq-q"><span>Do I need to define topics in advance?</span><span class="plus">–</span></div>
-        <div class="faq-a" style="display:block;">No. Topics are detected automatically from the calls. You can also pin or rename topics once they appear.</div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Ask a question</h3>
+        <p>Type a question and get an answer grounded in call data.</p>
       </div>
-      <div class="faq-item"><div class="faq-q"><span>How quickly do insights appear?</span><span class="plus">+</span></div><div class="faq-a">Topics and sentiment for a call are available within minutes of the call ending.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>How is sentiment measured?</span><span class="plus">+</span></div><div class="faq-a">Sentiment is scored on a 1–5 scale per call, based on the full conversation — not individual words.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>Can I ask it a question in plain language?</span><span class="plus">+</span></div><div class="faq-a">Yes — type a question and get an answer grounded in your call data, with the source calls cited.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>What languages are supported?</span><span class="plus">+</span></div><div class="faq-a">Hindi, English, and Hinglish. The system handles code-switching within a single call.</div></div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Custom reports</h3>
+        <p>Build recurring reports around the topics and teams you care about.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>Exportable</h3>
+        <p>Push insights to the dashboards and tools your team already uses.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -262,15 +198,5 @@
     <div class="fbottom">© 2026 Leadvision AI</div>
   </div>
 </footer>
-
-<script>
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
-</script>
 </body>
 </html>

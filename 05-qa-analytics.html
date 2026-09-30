@@ -26,241 +26,155 @@
 <!-- ===== HERO ===== -->
 <section class="hero">
   <div class="wrap">
-    <h1>Score 100% of your calls, not the 2% you sample.</h1>
+    <span class="eyebrow-tag"><span class="dot"></span>QA & Analytics</span>
+    <h1>Score 100% of your calls, not the <span class="accent">2% you sample</span>.</h1>
     <p class="lede">Every call is scored against your own scorecard, with the quoted evidence behind every score.</p>
     <div class="hero-cta">
       <a href="08-book-a-demo.html" class="btn primary">Book a demo</a>
-      <a href="#scorecard" style="font-weight:600; color:var(--ink); font-size:0.92rem;">See a sample report ↓</a>
+      <a href="#scorecard" class="btn btn-ghost">See a sample report ↓</a>
     </div>
   </div>
 </section>
 
 <!-- ===== EVERY SCORE COMES WITH PROOF ===== -->
-<section style="background:var(--bg-alt);" id="scorecard">
+<section id="scorecard" style="background:var(--bg-alt); border-top:1px solid var(--slate-line); border-bottom:1px solid var(--slate-line);">
   <div class="wrap">
     <div class="section-head">
       <h2>Every score comes with proof</h2>
       <p>A sample scorecard from one call, checked against a compliance scorecard.</p>
     </div>
-    <div class="table-scroll">
-      <table class="scorecard">
-        <thead>
-          <tr><th>CHECK</th><th>RESULT</th><th>EVIDENCE</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="check-name">Greeting includes required disclosure</td>
-            <td><span class="pass">Pass</span></td>
-            <td class="evidence">"Aapki call is being recorded for quality and training purposes" — 00:04
-              <div class="transcript-ref">TRANSCRIPT — 00:12<br>"Sir, main aapko confirm kar deti hoon, aapki call is being recorded for quality and training purposes."</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="check-name">Verified customer identity</td>
-            <td><span class="pass">Pass</span></td>
-            <td class="evidence">Agent confirmed name and account number — 00:38</td>
-          </tr>
-          <tr>
-            <td class="check-name">Did not make payment promise without approval</td>
-            <td><span class="fail">Fail</span></td>
-            <td class="evidence">"I can waive that late fee right now" — 02:15</td>
-          </tr>
-          <tr>
-            <td class="check-name">Offered the right resolution</td>
-            <td><span class="pass">Pass</span></td>
-            <td class="evidence">Refund process explained correctly — 03:40</td>
-          </tr>
-          <tr>
-            <td class="check-name">Closed with next steps confirmed</td>
-            <td><span class="pass">Pass</span></td>
-            <td class="evidence">"Aapko SMS pe confirmation milega" — 04:50</td>
-          </tr>
-        </tbody>
-      </table>
+    <div style="background:var(--white); border:1px solid var(--slate-line); border-radius:24px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.04);">
+      <div style="padding:24px 32px; border-bottom:1px solid var(--slate-line); display:grid; grid-template-columns:3fr 1fr 4fr; gap:20px; background:var(--bg-alt);">
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase;">Check</div>
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase;">Result</div>
+        <div style="font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase;">Evidence</div>
+      </div>
+      <div style="padding:24px 32px; border-bottom:1px solid var(--slate-line); display:grid; grid-template-columns:3fr 1fr 4fr; gap:20px; align-items:start; transition:background 0.2s ease;" onmouseover="this.style.background='var(--bg-alt)'" onmouseout="this.style.background='var(--white)'">
+        <div style="font-weight:600; color:var(--ink); line-height:1.4;">Greeting includes required disclosure</div>
+        <div><span style="display:inline-block; padding:4px 10px; background:rgba(46,204,113,0.1); color:#27ae60; font-size:0.8rem; font-weight:700; border-radius:100px;">Pass</span></div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.5;">
+          "Aapki call is being recorded for quality and training purposes" <span style="font-family:var(--mono); font-size:0.8rem; color:var(--ink-faint);">00:04</span>
+          <div style="margin-top:12px; background:var(--bg-alt); border:1px solid var(--slate-line); padding:12px; border-radius:8px; font-size:0.85rem; color:var(--ink);">
+            <div style="font-family:var(--mono); font-size:0.7rem; color:var(--ink-faint); margin-bottom:4px; font-weight:700;">TRANSCRIPT — 00:04</div>
+            "Sir, main aapko confirm kar deti hoon, aapki call is being recorded for quality and training purposes."
+          </div>
+        </div>
+      </div>
+      <div style="padding:24px 32px; border-bottom:1px solid var(--slate-line); display:grid; grid-template-columns:3fr 1fr 4fr; gap:20px; align-items:start; transition:background 0.2s ease;" onmouseover="this.style.background='var(--bg-alt)'" onmouseout="this.style.background='var(--white)'">
+        <div style="font-weight:600; color:var(--ink); line-height:1.4;">Verified customer identity</div>
+        <div><span style="display:inline-block; padding:4px 10px; background:rgba(46,204,113,0.1); color:#27ae60; font-size:0.8rem; font-weight:700; border-radius:100px;">Pass</span></div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.5;">Agent confirmed name and account number <span style="font-family:var(--mono); font-size:0.8rem; color:var(--ink-faint);">00:38</span></div>
+      </div>
+      <div style="padding:24px 32px; border-bottom:1px solid var(--slate-line); display:grid; grid-template-columns:3fr 1fr 4fr; gap:20px; align-items:start; transition:background 0.2s ease;" onmouseover="this.style.background='var(--bg-alt)'" onmouseout="this.style.background='var(--white)'">
+        <div style="font-weight:600; color:var(--ink); line-height:1.4;">Did not make payment promise without approval</div>
+        <div><span style="display:inline-block; padding:4px 10px; background:rgba(231,76,60,0.1); color:#e74c3c; font-size:0.8rem; font-weight:700; border-radius:100px;">Fail</span></div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.5;">
+          "I can waive that late fee right now" <span style="font-family:var(--mono); font-size:0.8rem; color:var(--ink-faint);">02:15</span>
+        </div>
+      </div>
+      <div style="padding:24px 32px; display:grid; grid-template-columns:3fr 1fr 4fr; gap:20px; align-items:start; transition:background 0.2s ease;" onmouseover="this.style.background='var(--bg-alt)'" onmouseout="this.style.background='var(--white)'">
+        <div style="font-weight:600; color:var(--ink); line-height:1.4;">Closed with next steps confirmed</div>
+        <div><span style="display:inline-block; padding:4px 10px; background:rgba(46,204,113,0.1); color:#27ae60; font-size:0.8rem; font-weight:700; border-radius:100px;">Pass</span></div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.5;">"Aapko SMS pe confirmation milega" <span style="font-family:var(--mono); font-size:0.8rem; color:var(--ink-faint);">04:50</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== HOW IT WORKS ===== -->
-<section class="animate-up">
+<section>
   <div class="wrap">
     <div class="section-head">
       <h2>How it works</h2>
     </div>
-    <div class="steps-grid">
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:32px;">
       <div>
-        <div class="step-num">1</div>
-        <div class="step-title">Call</div>
-        <div class="step-desc">Every inbound and outbound call is captured automatically.</div>
+        <div style="width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--white); font-family:var(--display); font-size:1.5rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">1</div>
+        <div style="font-family:var(--display); font-size:1.15rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Call</div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.6;">Every inbound and outbound call is captured automatically via integration.</div>
       </div>
       <div>
-        <div class="step-num">2</div>
-        <div class="step-title">Transcript</div>
-        <div class="step-desc">The call is transcribed in Hindi, English and Hinglish.</div>
+        <div style="width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--white); font-family:var(--display); font-size:1.5rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">2</div>
+        <div style="font-family:var(--display); font-size:1.15rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Transcript</div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.6;">The call is transcribed in Hindi, English and Hinglish with high accuracy.</div>
       </div>
       <div>
-        <div class="step-num">3</div>
-        <div class="step-title">Score</div>
-        <div class="step-desc">Scored against your scorecard, check by check.</div>
+        <div style="width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--white); font-family:var(--display); font-size:1.5rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">3</div>
+        <div style="font-family:var(--display); font-size:1.15rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Score</div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.6;">Scored against your exact custom scorecard, check by check.</div>
       </div>
       <div>
-        <div class="step-num">4</div>
-        <div class="step-title">Flagged for review</div>
-        <div class="step-desc">Failed checks and risky calls are surfaced for a human to look at.</div>
+        <div style="width:48px; height:48px; border-radius:12px; background:var(--ink); color:var(--white); font-family:var(--display); font-size:1.5rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-bottom:20px;">4</div>
+        <div style="font-family:var(--display); font-size:1.15rem; font-weight:700; color:var(--ink); margin-bottom:12px;">Flagged</div>
+        <div style="font-size:0.95rem; color:var(--ink-soft); line-height:1.6;">Failed checks and risky calls are surfaced for a human to look at immediately.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== US VS OTHERS ===== -->
-<section style="background:var(--bg-alt);">
+<section style="background:var(--bg-alt); border-top:1px solid var(--slate-line); border-bottom:1px solid var(--slate-line);">
   <div class="wrap">
     <div class="section-head">
       <h2>Us vs others</h2>
     </div>
-    <div class="table-scroll">
-      <table class="compare">
+    <div style="background:var(--white); border:1px solid var(--slate-line); border-radius:24px; overflow:hidden; box-shadow:0 12px 40px rgba(0,0,0,0.04);">
+      <table style="width:100%; border-collapse:collapse; text-align:left;">
         <thead>
-          <tr><th></th><th>Manual QA</th><th>Other tools</th><th class="us">Leadvision AI</th></tr>
+          <tr style="background:var(--bg-alt); border-bottom:1px solid var(--slate-line);">
+            <th style="padding:24px 32px; font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; border-right:1px solid var(--slate-line);">Feature</th>
+            <th style="padding:24px 32px; font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; border-right:1px solid var(--slate-line);">Manual QA</th>
+            <th style="padding:24px 32px; font-family:var(--mono); font-size:0.75rem; font-weight:700; color:var(--ink-faint); letter-spacing:0.06em; text-transform:uppercase; border-right:1px solid var(--slate-line);">Other tools</th>
+            <th style="padding:24px 32px; font-family:var(--display); font-size:1.1rem; font-weight:700; color:var(--ink); background:var(--ink); color:var(--white);">Leadvision AI</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><th>Calls checked</th><td>[XX]%</td><td>[XX]%</td><td class="us">100%</td></tr>
-          <tr><th>Whose scorecard</th><td>Yours</td><td>Vendor's</td><td class="us">Yours</td></tr>
-          <tr><th>Evidence behind score</th><td>Notes only</td><td>Sometimes</td><td class="us">Every score</td></tr>
-          <tr><th>Time to feedback</th><td>[XX] days</td><td>[XX] hours</td><td class="us">[XX] minutes</td></tr>
-          <tr><th>Languages</th><td>Any</td><td>Limited</td><td class="us">Hindi, English, Hinglish</td></tr>
+          <tr style="border-bottom:1px solid var(--slate-line);">
+            <td style="padding:24px 32px; font-weight:600; color:var(--ink); border-right:1px solid var(--slate-line);">Calls checked</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">[XX]%</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">[XX]%</td>
+            <td style="padding:24px 32px; font-weight:700; color:var(--ink); border-right:1px solid var(--ink); border-left:1px solid var(--ink);">100%</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-line);">
+            <td style="padding:24px 32px; font-weight:600; color:var(--ink); border-right:1px solid var(--slate-line);">Whose scorecard</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">Yours</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">Vendor's predefined</td>
+            <td style="padding:24px 32px; font-weight:700; color:var(--ink); border-right:1px solid var(--ink); border-left:1px solid var(--ink);">Yours</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--slate-line);">
+            <td style="padding:24px 32px; font-weight:600; color:var(--ink); border-right:1px solid var(--slate-line);">Evidence behind score</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">Notes only</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">Sometimes</td>
+            <td style="padding:24px 32px; font-weight:700; color:var(--ink); border-right:1px solid var(--ink); border-left:1px solid var(--ink);">Every score</td>
+          </tr>
+          <tr>
+            <td style="padding:24px 32px; font-weight:600; color:var(--ink); border-right:1px solid var(--slate-line);">Time to feedback</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">[XX] days</td>
+            <td style="padding:24px 32px; color:var(--ink-soft); border-right:1px solid var(--slate-line);">[XX] hours</td>
+            <td style="padding:24px 32px; font-weight:700; color:var(--ink); border-right:1px solid var(--ink); border-left:1px solid var(--ink); border-bottom:1px solid var(--ink);">[XX] minutes</td>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </section>
 
-<!-- ===== FEATURES ===== -->
-<section class="animate-up">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Features</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Your own scorecard</h3>
-        <p>Bring the checks you already use, we score every call against them.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Evidence for every score</h3>
-        <p>Each result links back to the exact line in the transcript.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Alerts on risky calls</h3>
-        <p>Calls that fail critical checks are flagged the same day.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Agent-level feedback</h3>
-        <p>See scores and trends broken down by agent.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Custom reports</h3>
-        <p>Build reports around the checks and teams you care about.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon"></div>
-        <h3>Exports</h3>
-        <p>Pull scores and evidence out to the tools your team already uses.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== BIG STATS ===== -->
-<div class="stats-band">
+<div style="background:var(--white); border-bottom:1px solid var(--slate-line); padding:60px 0;">
   <div class="wrap">
-    <div class="stats-row">
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:48px; background:var(--bg-alt); border:1px solid var(--slate-line); border-radius:24px; padding:48px; text-align:center; box-shadow:0 8px 30px rgba(0,0,0,0.02);">
       <div>
-        <div class="stat-big">[XX%]</div>
-        <div class="stat-sub">of calls scored</div>
+        <div style="font-family:var(--display); font-size:4rem; font-weight:700; color:var(--ink); line-height:1; margin-bottom:12px;">[XX%]</div>
+        <div style="font-weight:600; color:var(--ink-soft); font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em;">Of calls scored</div>
       </div>
       <div>
-        <div class="stat-big">[XX%]</div>
-        <div class="stat-sub">agreement with human auditors</div>
+        <div style="font-family:var(--display); font-size:4rem; font-weight:700; color:var(--ink); line-height:1; margin-bottom:12px;">[XX%]</div>
+        <div style="font-weight:600; color:var(--ink-soft); font-size:1.1rem; text-transform:uppercase; letter-spacing:0.05em;">Agreement with human auditors</div>
       </div>
     </div>
-    <p class="stats-fine">Agreement measured on [XX] calls, scored independently by [XX] human auditors and compared with the automated score.</p>
+    <p style="text-align:center; margin-top:24px; color:var(--ink-faint); font-size:0.85rem;">Agreement measured on [XX] calls, scored independently by [XX] human auditors and compared with the automated score.</p>
   </div>
 </div>
-
-<!-- ===== USE CASES ===== -->
-<section class="animate-up">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Use cases</h2>
-    </div>
-    <div class="usecase-grid">
-      <div class="usecase-col">
-        <h3>Compliance</h3>
-        <p>Check every call for required disclosures.</p>
-      </div>
-      <div class="usecase-col">
-        <h3>Collections</h3>
-        <p>Flag calls with payment promises that need approval.</p>
-      </div>
-      <div class="usecase-col">
-        <h3>Sales</h3>
-        <p>Score calls against your sales process.</p>
-      </div>
-      <div class="usecase-col">
-        <h3>Support</h3>
-        <p>Track resolution quality across every ticket call.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FITS INTO YOUR EXISTING SETUP ===== -->
-<section style="background:var(--bg-alt);">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Fits into your existing setup</h2>
-    </div>
-    <div class="int-grid">
-      <div class="int-block">
-        <h3>Dialer</h3>
-        <p>Connects to the dialer you already use to pull in call recordings.</p>
-      </div>
-      <div class="int-block">
-        <h3>CRM</h3>
-        <p>Scores and evidence are written back to the right customer record.</p>
-      </div>
-      <div class="int-block">
-        <h3>Export to coaching tools</h3>
-        <p>Send flagged calls and scores to the tools your coaches use.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FAQ ===== -->
-<section class="faq">
-  <div class="wrap">
-    <div class="faq-head">
-      <h2 style="font-family:var(--display); font-weight:600; font-size:clamp(1.6rem,3vw,2rem); margin:0;">Frequently asked questions</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open">
-        <div class="faq-q"><span>Can we use our own scorecard?</span><span class="plus">–</span></div>
-        <div class="faq-a" style="display:block;">Yes. You define the checks, we score every call against them.</div>
-      </div>
-      <div class="faq-item"><div class="faq-q"><span>Does it work on Hindi and Hinglish calls?</span><span class="plus">+</span></div><div class="faq-a">Yes — our transcription and scoring pipeline supports Hindi, English, and code-switched Hinglish.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>How is accuracy checked?</span><span class="plus">+</span></div><div class="faq-a">We measure agreement between automated scores and human auditors on a regular cadence.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>How quickly after a call do we see the score?</span><span class="plus">+</span></div><div class="faq-a">Scores are typically available within [XX] minutes of a call ending.</div></div>
-      <div class="faq-item"><div class="faq-q"><span>Who can see the scores?</span><span class="plus">+</span></div><div class="faq-a">You control access. Scores can be visible to QA leads, managers, or agents depending on your setup.</div></div>
-    </div>
-  </div>
-</section>
 
 <!-- ===== CTA BAND ===== -->
 <section class="cta-band">
@@ -304,15 +218,5 @@
     <div class="fbottom">© 2026 Leadvision AI</div>
   </div>
 </footer>
-
-<script>
-document.querySelectorAll('.faq-item').forEach(item => {
-  item.querySelector('.faq-q').addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
-});
-</script>
 </body>
 </html>
