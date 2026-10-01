@@ -22,56 +22,53 @@ const stagger: Variants = {
 function DashboardMockup() {
   return (
     <div className="relative w-full rounded-2xl overflow-hidden shadow-2xl border border-slate-line bg-[#0f0e0d]">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-[#2a2018] bg-[#161412]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a2018] bg-[#161412]">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
-          <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-          <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
         </div>
-        <span className="font-mono text-[11px] text-[#5a4e42]">Leadvision — QA Dashboard</span>
-        <span className="font-mono text-[11px] text-[#5a4e42]">LIVE</span>
+        <span className="font-mono text-[10px] text-[#5a4e42]">Leadvision — QA Dashboard</span>
+        <span className="font-mono text-[10px] text-[#5a4e42]">LIVE</span>
       </div>
-      <div className="flex items-center gap-6 px-5 py-3 border-b border-[#2a2018]">
-        {["Overview", "Call Log", "Transcripts", "Insights", "Alerts"].map((t, i) => (
-          <span key={t} className={`text-xs font-semibold ${i === 0 ? "text-[#f0c060] border-b border-[#f0c060] pb-1" : "text-[#4a3e32]"}`}>{t}</span>
-        ))}
-      </div>
-      <div className="grid grid-cols-4 gap-px bg-[#2a2018] border-b border-[#2a2018]">
+      {/* 2-col on mobile, 4-col on sm+ */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[#2a2018] border-b border-[#2a2018]">
         {[
           { label: "Calls Today", value: "1,284", sub: "+12% vs yesterday", color: "#4ade80" },
           { label: "QA Score", value: "91.4%", sub: "↑ 3.2 pts this week", color: "#f0c060" },
-          { label: "Avg Handle Time", value: "4m 32s", sub: "−18s vs target", color: "#60a5fa" },
+          { label: "Handle Time", value: "4m 32s", sub: "−18s vs target", color: "#60a5fa" },
           { label: "Escalations", value: "2.1%", sub: "↓ 0.4% vs last week", color: "#f87171" },
         ].map(s => (
-          <div key={s.label} className="bg-[#141210] px-4 py-4">
-            <div className="text-[11px] text-[#6b5a48] mb-1">{s.label}</div>
-            <div className="text-2xl font-bold font-display" style={{ color: s.color }}>{s.value}</div>
-            <div className="text-[10px] text-[#4a3e32] mt-1">{s.sub}</div>
+          <div key={s.label} className="bg-[#141210] px-3 py-3">
+            <div className="text-[10px] text-[#6b5a48] mb-1 truncate">{s.label}</div>
+            <div className="text-lg font-bold font-display" style={{ color: s.color }}>{s.value}</div>
+            <div className="text-[9px] text-[#4a3e32] mt-0.5 hidden sm:block">{s.sub}</div>
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-2 gap-px bg-[#2a2018]">
+      {/* Stack vertically on mobile */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[#2a2018]">
         <div className="bg-[#0f0e0d] p-4 space-y-2">
-          <div className="text-[11px] font-bold text-[#6b5a48] uppercase tracking-wider mb-2">Live Transcript — Call #1024</div>
+          <div className="text-[10px] font-bold text-[#6b5a48] uppercase tracking-wider mb-2">Live Transcript</div>
           <div className="flex flex-col gap-2 text-[11px]">
-            <div><span className="text-[#5a4e42]">Customer: </span><span className="text-[#d4b896]">Mera order kab aayega? Teen din se wait kar raha hoon.</span></div>
-            <div><span className="text-[#f0c060]">Agent: </span><span className="text-[#9ca3af]">Main abhi aapka order check karta hoon. Ek minute...</span></div>
-            <div><span className="text-[#5a4e42]">Customer: </span><span className="text-[#d4b896]">Bahut time ho gaya. Koi solution batao.</span></div>
-            <div><span className="text-[#f0c060]">Agent: </span><span className="text-[#9ca3af]">Order expected Thursday. I'm adding express shipping for free.</span></div>
+            <div><span className="text-[#5a4e42]">Customer: </span><span className="text-[#d4b896]">Mera order kab aayega?</span></div>
+            <div><span className="text-[#f0c060]">Agent: </span><span className="text-[#9ca3af]">Main abhi check karta hoon. Ek minute...</span></div>
+            <div><span className="text-[#5a4e42]">Customer: </span><span className="text-[#d4b896]">Koi solution batao.</span></div>
+            <div><span className="text-[#f0c060]">Agent: </span><span className="text-[#9ca3af]">Order on Thursday. Adding express shipping for free.</span></div>
           </div>
           <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#2a2018]">
             <span className="bg-[#22c55e]/20 text-[#22c55e] text-[10px] px-2 py-0.5 rounded-full font-bold">PASS</span>
-            <span className="text-[10px] text-[#5a4e42]">Empathy: 9/10 · Resolution: Yes</span>
+            <span className="text-[10px] text-[#5a4e42]">Empathy: 9/10</span>
           </div>
         </div>
         <div className="bg-[#0f0e0d] p-4">
-          <div className="text-[11px] font-bold text-[#6b5a48] uppercase tracking-wider mb-3">QA Score by Hour</div>
-          <div className="flex items-end gap-1.5 h-20">
+          <div className="text-[10px] font-bold text-[#6b5a48] uppercase tracking-wider mb-3">QA Score by Hour</div>
+          <div className="flex items-end gap-1 h-16">
             {[72, 85, 88, 91, 87, 93, 90, 95, 88, 92, 89, 94].map((v, i) => (
               <div key={i} className="flex-1 rounded-t-sm" style={{ height: `${v}%`, background: v > 90 ? "#f0c060" : "#3a3028" }} />
             ))}
           </div>
-          <div className="flex justify-between text-[9px] text-[#3a3028] mt-1"><span>8am</span><span>12pm</span><span>4pm</span><span>8pm</span></div>
+          <div className="flex justify-between text-[9px] text-[#3a3028] mt-1"><span>8am</span><span>2pm</span><span>8pm</span></div>
         </div>
       </div>
     </div>
@@ -149,18 +146,18 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* HERO */}
-      <section className="relative py-24 md:py-40 overflow-hidden bg-background">
+      <section className="relative py-20 md:py-40 overflow-hidden bg-background">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_top,_rgba(189,37,37,0.08)_0%,_transparent_65%)] pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-red/30 bg-red-light text-red text-xs font-bold tracking-wider uppercase mb-8">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-red/30 bg-red-light text-red text-[10px] font-bold tracking-wider uppercase mb-6">
                 <span className="w-1.5 h-1.5 rounded-full bg-red animate-pulse" />
                 Voice AI Platform for India
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-display font-bold leading-[1.05] tracking-tight mb-6 text-ink">
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl md:text-7xl font-display font-bold leading-[1.05] tracking-tight mb-5 text-ink">
                 AI agents that<br />sound like <span className="relative inline-block">
                   <span className="text-red">humans.</span>
                   <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 200 8" preserveAspectRatio="none">
@@ -169,21 +166,21 @@ export default function Home() {
                 </span>
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="text-lg md:text-xl text-ink-soft leading-relaxed mb-10 max-w-xl">
+              <motion.p variants={fadeUp} className="text-base md:text-xl text-ink-soft leading-relaxed mb-8 max-w-xl">
                 The first voice AI stack built for Hinglish conversations. Low latency, 94% accuracy, cloned Indian voices, and adaptive workflows that handle real edge cases.
               </motion.p>
 
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
-                <Link href="/book-a-demo" className="bg-ink text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:bg-red transition-all shadow-lg group">
+              <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-3">
+                <Link href="/book-a-demo" className="bg-ink text-white px-7 py-3.5 rounded-full font-bold flex items-center justify-center gap-2 hover:bg-red transition-all shadow-lg group">
                   Book a demo <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link href="#products" className="bg-white border border-slate-line text-ink px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:border-red hover:text-red transition-all shadow-sm">
+                <Link href="#products" className="bg-white border border-slate-line text-ink px-7 py-3.5 rounded-full font-bold flex items-center justify-center gap-2 hover:border-red hover:text-red transition-all shadow-sm">
                   <Play size={15} className="fill-current" /> See it in action
                 </Link>
               </motion.div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.2 }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3 }} className="w-full overflow-hidden">
               <DashboardMockup />
             </motion.div>
           </div>
@@ -191,23 +188,23 @@ export default function Home() {
       </section>
 
       {/* ADVISORS STRIP */}
-      <section className="border-y border-slate-line bg-white py-10 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center gap-8 sm:gap-12">
-          <span className="font-mono text-xs font-bold text-ink-faint tracking-widest uppercase whitespace-nowrap">Advisors from</span>
-          <div className="flex flex-wrap justify-center sm:justify-start gap-8 md:gap-12 opacity-50 grayscale">
+      <section className="border-y border-slate-line bg-white py-8 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <p className="font-mono text-[10px] font-bold text-ink-faint tracking-widest uppercase text-center mb-5">Advisors from</p>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12 opacity-50 grayscale">
             {["IIT Bombay", "IIT Madras", "IIM Ahmedabad", "Stanford", "IIM Bangalore", "Imperial College", "Cambridge"].map(name => (
-              <span key={name} className="font-display font-bold text-base text-ink">{name}</span>
+              <span key={name} className="font-display font-bold text-sm sm:text-base text-ink">{name}</span>
             ))}
           </div>
         </div>
       </section>
 
       {/* BENEFITS GRID */}
-      <section className="py-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-ink">Why Leadvision is different</h2>
-            <p className="text-lg text-ink-soft max-w-2xl mx-auto">Not another chatbot wrapper. A purpose-built voice AI stack for the hardest problems in Indian customer operations.</p>
+      <section className="py-20 md:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }} variants={fadeUp} className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 text-ink">Why Leadvision is different</h2>
+            <p className="text-base md:text-lg text-ink-soft max-w-2xl mx-auto">Not another chatbot wrapper. A purpose-built voice AI stack for the hardest problems in Indian customer operations.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -242,11 +239,11 @@ export default function Home() {
       </section>
 
       {/* PRODUCT STACK */}
-      <section id="products" className="py-32 bg-white border-t border-slate-line">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-ink">Five products, one stack</h2>
-            <p className="text-lg text-ink-soft max-w-2xl mx-auto">Everything you need to automate, analyze, and understand voice at scale.</p>
+      <section id="products" className="py-20 md:py-32 bg-white border-t border-slate-line">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-12 md:mb-20">
+            <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 text-ink">Five products, one stack</h2>
+            <p className="text-base md:text-lg text-ink-soft max-w-2xl mx-auto">Everything you need to automate, analyze, and understand voice at scale.</p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <GradientCard gradient="bg-gradient-to-br from-red to-red-hover" icon={Phone} title="Voice AI Agent" items={["Outbound & inbound calls", "Hinglish native", "Adaptive workflow engine", "Human handoff"]} />
@@ -261,15 +258,15 @@ export default function Home() {
       </section>
 
       {/* SPLIT: INSIGHTS DASHBOARD */}
-      <section className="py-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <section className="py-20 md:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 text-xs font-bold font-mono text-red tracking-wider uppercase mb-6">
+              <motion.div variants={fadeUp} className="inline-flex items-center gap-2 text-xs font-bold font-mono text-red tracking-wider uppercase mb-5">
                 <Activity size={14} /> Consumer Insights
               </motion.div>
-              <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-display font-bold mb-6 text-ink">Understand why customers call before they hang up.</motion.h2>
-              <motion.p variants={fadeUp} className="text-lg text-ink-soft leading-relaxed mb-10">
+              <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-display font-bold mb-5 text-ink">Understand why customers call before they hang up.</motion.h2>
+              <motion.p variants={fadeUp} className="text-base md:text-lg text-ink-soft leading-relaxed mb-8">
                 Real-time alerts tell your team when a new objection spikes, a competitor is being mentioned, or a script change is working. No dashboards to build. Just answers.
               </motion.p>
               <motion.div variants={stagger} className="space-y-4">
@@ -287,7 +284,7 @@ export default function Home() {
                 ))}
               </motion.div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="w-full overflow-hidden">
               <InsightsMockup />
             </motion.div>
           </div>
@@ -295,21 +292,21 @@ export default function Home() {
       </section>
 
       {/* STATS BAND */}
-      <section className="py-20 bg-white border-y border-slate-line">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <section className="py-14 md:py-20 bg-white border-y border-slate-line">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { value: "<500ms", label: "Response latency", icon: Zap },
               { value: "94%", label: "STT accuracy", icon: Target },
               { value: "45min", label: "Long call support", icon: Clock },
               { value: "100%", label: "Calls QA-scored", icon: BarChart3 },
             ].map(({ value, label, icon: Icon }) => (
-              <div key={label} className="bg-background border border-slate-line p-8 rounded-2xl flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
-                <div className="w-12 h-12 rounded-xl bg-red-light text-red flex items-center justify-center mb-4">
-                  <Icon size={22} />
+              <div key={label} className="bg-background border border-slate-line p-5 md:p-8 rounded-2xl flex flex-col items-center text-center hover:-translate-y-1 transition-transform">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-red-light text-red flex items-center justify-center mb-3">
+                  <Icon size={20} />
                 </div>
-                <div className="text-4xl font-display font-bold mb-2 text-ink">{value}</div>
-                <div className="text-sm text-ink-faint font-medium uppercase tracking-wide">{label}</div>
+                <div className="text-2xl md:text-4xl font-display font-bold mb-1 text-ink">{value}</div>
+                <div className="text-[10px] md:text-sm text-ink-faint font-medium uppercase tracking-wide">{label}</div>
               </div>
             ))}
           </div>
@@ -317,36 +314,36 @@ export default function Home() {
       </section>
 
       {/* TRAYA CASE STUDY */}
-      <section className="py-32 bg-background">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 md:py-32 bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-            className="relative overflow-hidden bg-ink rounded-[2.5rem] p-12 md:p-20">
+            className="relative overflow-hidden bg-ink rounded-3xl md:rounded-[2.5rem] p-8 md:p-16 lg:p-20">
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-red/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-16">
+            <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16">
               <div className="flex-1 text-white">
-                <div className="font-mono text-xs font-bold text-slate-dark tracking-widest uppercase mb-6 flex items-center gap-3">
+                <div className="font-mono text-xs font-bold text-slate-dark tracking-widest uppercase mb-5 flex items-center gap-3">
                   <span className="w-8 h-px bg-slate-dark" /> Flagship Customer
                 </div>
-                <h2 className="text-5xl md:text-7xl font-display font-bold mb-8">Traya<span className="text-red">.</span></h2>
-                <p className="text-slate-dark text-lg leading-relaxed mb-10 max-w-md">
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6">Traya<span className="text-red">.</span></h2>
+                <p className="text-slate-dark text-base md:text-lg leading-relaxed mb-8 max-w-md">
                   Automating thousands of complex pre-sales and retention calls daily with Leadvision's Voice AI stack and QA analytics.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3">
                   {[
                     { val: "3x", label: "Call volume increase" },
                     { val: "68%", label: "Cost reduction" },
                     { val: "91%", label: "QA score avg" },
                     { val: "100%", label: "Calls analyzed" },
                   ].map(s => (
-                    <div key={s.label} className="border border-white/10 rounded-2xl p-5 bg-white/5">
-                      <div className="text-3xl font-display font-bold text-white mb-1">{s.val}</div>
+                    <div key={s.label} className="border border-white/10 rounded-2xl p-4 md:p-5 bg-white/5">
+                      <div className="text-2xl md:text-3xl font-display font-bold text-white mb-1">{s.val}</div>
                       <div className="text-xs text-slate-dark">{s.label}</div>
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="flex-1 w-full">
+              <div className="flex-1 w-full overflow-hidden">
                 <InsightsMockup />
               </div>
             </div>
@@ -383,13 +380,13 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 text-center bg-background">
-        <div className="max-w-3xl mx-auto px-6">
+      <section className="py-20 md:py-32 text-center bg-background">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.h2 variants={fadeUp} className="text-5xl md:text-6xl font-display font-bold mb-6 text-ink">Ready to hear the difference?</motion.h2>
-            <motion.p variants={fadeUp} className="text-xl text-ink-soft mb-12">Book a live demo and hear our AI agent handle a real call in Hinglish.</motion.p>
+            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-display font-bold mb-5 text-ink">Ready to hear the difference?</motion.h2>
+            <motion.p variants={fadeUp} className="text-base md:text-xl text-ink-soft mb-10">Book a live demo and hear our AI agent handle a real call in Hinglish.</motion.p>
             <motion.div variants={fadeUp}>
-              <Link href="/book-a-demo" className="inline-flex items-center gap-3 bg-red hover:bg-red-hover text-white px-12 py-5 rounded-full font-bold text-lg shadow-xl hover:shadow-red/20 hover:-translate-y-1 transition-all">
+              <Link href="/book-a-demo" className="inline-flex items-center gap-3 bg-red hover:bg-red-hover text-white px-8 md:px-12 py-4 md:py-5 rounded-full font-bold text-base md:text-lg shadow-xl hover:-translate-y-1 transition-all">
                 Book a live demo <ArrowRight size={20} />
               </Link>
             </motion.div>
