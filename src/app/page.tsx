@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { motion, Variants } from "framer-motion";
 import {
   Zap, Brain, Volume2, IndianRupee, Target, GitBranch, ArrowRight,
@@ -188,16 +189,8 @@ export default function Home() {
       </section>
 
       {/* ADVISORS STRIP */}
-      <section className="border-y border-slate-line bg-white py-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <p className="font-mono text-[10px] font-bold text-ink-faint tracking-widest uppercase text-center mb-5">Advisors from</p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 md:gap-12 opacity-50 grayscale">
-            {["IIT Bombay", "IIT Madras", "IIM Ahmedabad", "Stanford", "IIM Bangalore", "Imperial College", "Cambridge"].map(name => (
-              <span key={name} className="font-display font-bold text-sm sm:text-base text-ink">{name}</span>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LogoMarquee />
+
 
       {/* BENEFITS GRID */}
       <section className="py-20 md:py-32 bg-background">

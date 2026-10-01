@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, CheckCircle2, Users, Building2, MapPin, Briefcase } from "lucide-react";
+import { LogoMarquee } from "@/components/LogoMarquee";
 
 const fadeUp: Variants = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } } };
 const stagger: Variants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
@@ -47,29 +48,14 @@ export default function Company() {
       </section>
 
       {/* ADVISORS */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-16">
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6 text-center mb-10">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="text-4xl font-display font-bold text-ink mb-4">Backed by world-class advisors</h2>
-            <p className="text-lg text-ink-soft max-w-2xl mx-auto">Our team is advised by experts from India's and the world's top institutions.</p>
+            <p className="text-lg text-ink-soft max-w-2xl mx-auto">Our team is advised by experts from India&apos;s and the world&apos;s top institutions.</p>
           </motion.div>
-          <div className="flex flex-wrap justify-center gap-6">
-            {[
-              { school: "IIT Bombay", dept: "Computer Science" },
-              { school: "IIT Madras", dept: "AI & Machine Learning" },
-              { school: "IIM Ahmedabad", dept: "Strategy & Growth" },
-              { school: "Stanford University", dept: "Product Design" },
-              { school: "IIM Bangalore", dept: "Operations" },
-              { school: "Imperial College", dept: "Data Science" },
-              { school: "Cambridge University", dept: "NLP Research" },
-            ].map(a => (
-              <div key={a.school} className="bg-white border border-slate-line px-8 py-5 rounded-2xl flex flex-col items-center text-center hover:-translate-y-1 transition-transform shadow-sm min-w-[160px]">
-                <div className="font-display font-bold text-ink text-base">{a.school}</div>
-                <div className="text-xs text-ink-faint mt-1">{a.dept}</div>
-              </div>
-            ))}
-          </div>
         </div>
+        <LogoMarquee />
       </section>
 
       {/* HIRING */}
