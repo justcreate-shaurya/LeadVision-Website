@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #1b2027;
+  --ink-soft: #4a5568;
+  --ink-faint: #718096;
+  
+  --red: #bd2525;
+  --red-hover: #a11f1f;
+  --red-light: #fce8e8;
+
+  --yellow: #ffd54f;
+  
+  --slate: #e2e8f0;
+  --slate-line: #edf2f7;
+  --slate-dark: #cbd5e1;
+  
+  --bg: #fafafa;
+  --bg-alt: #ffffff;
+  --white: #ffffff;
+}
+
+@theme {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  
+  --color-red: var(--red);
+  --color-red-hover: var(--red-hover);
+  --color-red-light: var(--red-light);
+
+  --color-yellow: var(--yellow);
+  
+  --color-slate: var(--slate);
+  --color-slate-line: var(--slate-line);
+  --color-slate-dark: var(--slate-dark);
+  
+  --color-background: var(--bg);
+  --color-background-alt: var(--bg-alt);
+  
+  --font-display: var(--font-space-grotesk), "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base utility for hiding scrollbars but keeping functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
