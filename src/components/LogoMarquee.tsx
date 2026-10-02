@@ -3,13 +3,16 @@
 // Infinite horizontal logo marquee — actual authentic institution logos via remote CDN
 // Duplicated list for seamless infinite loop
 
+import iimbLogo from '../../public/logos/iimb-custom.png';
+import imperialLogo from '../../public/logos/imperial-custom.png';
+
 const institutions = [
   { name: "IIT Bombay",        dept: "Computer Science",     logo: "https://logo.uplead.com/iitb.ac.in" },
   { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://logo.uplead.com/iitm.ac.in" },
   { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://logo.uplead.com/iima.ac.in" },
   { name: "Stanford",          dept: "Product Design",       logo: "https://logo.uplead.com/stanford.edu" },
-  { name: "IIM Bangalore",     dept: "Operations",           logo: "/logos/iimb-custom.png" },
-  { name: "Imperial College",  dept: "Data Science",         logo: "/logos/imperial-custom.png" },
+  { name: "IIM Bangalore",     dept: "Operations",           logo: iimbLogo.src },
+  { name: "Imperial College",  dept: "Data Science",         logo: imperialLogo.src },
   { name: "Cambridge",         dept: "NLP Research",         logo: "https://logo.uplead.com/cam.ac.uk", scale: "scale-150" },
 ];
 
