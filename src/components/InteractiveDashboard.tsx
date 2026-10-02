@@ -260,42 +260,66 @@ function EdgePanel() {
   const [viewingTranscript, setViewingTranscript] = useState<number | null>(null);
 
   const cases = [
-    { tag: "Unhandled", title: "Customer references a previous call agent", freq: "47 calls", severity: "high", trend: "+8 this week" },
-    { tag: "Unhandled", title: "Call drops and customer calls back mid-script", freq: "31 calls", severity: "high", trend: "+2 this week" },
-    { tag: "Partial", title: "Customer asks for a specific product variant", freq: "112 calls", severity: "medium", trend: "stable" },
+    { tag: "Auto-resolved", title: "Customer references previous human agent's promise", freq: "47 calls", severity: "success", trend: "100% resolved" },
+    { tag: "Auto-resolved", title: "Customer interrupts pitch with complex multi-part query", freq: "31 calls", severity: "success", trend: "98% resolved" },
+    { tag: "Needs review", title: "Customer uses highly obscure regional slang for 'credit'", freq: "12 calls", severity: "medium", trend: "requires training" },
   ];
 
   if (viewingTranscript !== null) {
     const c = cases[viewingTranscript];
     return (
-      <Panel title="Edge Case View" badge="TRANSCRIPT" accentColor="#06b6d4">
+      <Panel title="Conversation Insights" badge="OMNI-CHANNEL MEMORY" accentColor="#4ade80">
         <div className="p-4 border-b border-[#241e17] bg-[#1a1612]">
-          <button onClick={() => setViewingTranscript(null)} className="text-[11px] text-[#8a7a6a] hover:text-white flex items-center gap-1.5 transition-colors mb-3">
-            <ArrowLeft size={12} /> Back to cases
+          <button onClick={() => setViewingTranscript(null)} className="text-[11px] text-[#8a7a6a] hover:text-white flex items-center gap-1.5 transition-colors mb-4">
+            <ArrowLeft size={12} /> Back to discovery
           </button>
-          <div className="flex items-center gap-2 mb-1">
-            <span className={`text-[9px] font-bold rounded-full px-2 py-0.5 ${c.severity === 'high' ? 'bg-[#f87171]/20 text-[#f87171]' : 'bg-[#f0c060]/20 text-[#f0c060]'}`}>{c.tag}</span>
+          
+          {/* Insights Dashboard Header */}
+          <div className="grid grid-cols-3 gap-3 mb-2">
+            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
+              <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Detected Intent</div>
+              <div className="text-[12px] text-[#4ade80] font-medium">Cross-channel Context</div>
+            </div>
+            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
+              <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Sentiment Shift</div>
+              <div className="text-[12px] text-[#c4b49a] font-medium">Frustrated → <span className="text-[#4ade80]">Happy</span></div>
+            </div>
+            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
+              <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Action Taken</div>
+              <div className="text-[12px] text-[#c4b49a] font-medium">Memory sync (CRM)</div>
+            </div>
           </div>
-          <p className="text-[13px] font-medium text-white">{c.title}</p>
         </div>
-        <div className="flex-1 overflow-y-auto p-5 bg-[#0a0908] space-y-4">
+
+        <div className="flex-1 overflow-y-auto p-5 bg-[#0a0908] space-y-5">
           <div className="text-[10px] text-[#4a3e32] uppercase font-bold tracking-widest text-center">Yesterday, 14:32 PM</div>
+          
           <div className="flex gap-3">
             <div className="w-6 h-6 rounded-full bg-[#1e3a5f]/60 text-[#60a5fa] flex items-center justify-center text-[9px] font-bold shrink-0">C</div>
-            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[12px] text-[#a8b8d0]">
-              Hello, this is my third time calling. I spoke to Rahul yesterday about my return.
+            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-[#a8b8d0]">
+              Hello, this is my third time calling. I spoke to Rahul yesterday about my return, and he said it would be picked up today. Where is the guy?
             </div>
           </div>
+
+          {/* AI Internal Insight */}
+          <div className="flex justify-end pr-10 -my-2">
+            <div className="bg-[#1a1612] border border-[#241e17] rounded-lg px-3 py-1.5 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
+              <span className="text-[10px] font-mono text-[#8a7a6a]">Querying CRM: Contact="Rahul", Context="Return Pickup"... Match found.</span>
+            </div>
+          </div>
+
           <div className="flex gap-3 flex-row-reverse">
-            <div className="w-6 h-6 rounded-full bg-[#bd2525]/30 text-[#bd2525] flex items-center justify-center text-[9px] font-bold shrink-0">A</div>
-            <div className="bg-[#1e1410] border border-[#bd2525]/20 rounded-2xl rounded-tr-sm px-3 py-2 text-[12px] text-[#d4b896]">
-              I am sorry, I do not have context on Rahul. How can I help you today?
+            <div className="w-6 h-6 rounded-full bg-[#4ade80]/20 text-[#4ade80] flex items-center justify-center text-[9px] font-bold shrink-0">A</div>
+            <div className="bg-[#101a14] border border-[#4ade80]/20 rounded-2xl rounded-tr-sm px-3 py-2 text-[13px] text-[#d4b896]">
+              Hi there! I can see your conversation with Rahul in our system. I am so sorry for the delay. The pickup agent was delayed by rain, but is currently 10 minutes away from your location.
             </div>
           </div>
+
           <div className="flex gap-3">
             <div className="w-6 h-6 rounded-full bg-[#1e3a5f]/60 text-[#60a5fa] flex items-center justify-center text-[9px] font-bold shrink-0">C</div>
-            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[12px] text-[#a8b8d0]">
-              Are you a bot? I need to talk to a human who knows about my order.
+            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-[#a8b8d0]">
+              Oh wow. Okay, I didn't expect you to actually know that. Thank you, I will wait for him.
             </div>
           </div>
         </div>
@@ -304,22 +328,29 @@ function EdgePanel() {
   }
 
   return (
-    <Panel title="Leadvision — Edge Case Discovery" badge="4 new this week" accentColor="#06b6d4">
+    <Panel title="Leadvision — Edge Case Auto-Resolution" badge="LIVE LEARNING" accentColor="#06b6d4">
+      <div className="p-4 bg-[#1a1612] border-b border-[#241e17] flex justify-between items-end">
+         <p className="text-[12px] text-[#8a7a6a] max-w-[200px]">How the AI handles complex, unexpected scenarios natively.</p>
+         <div className="text-right">
+           <div className="text-[24px] font-display font-bold text-[#4ade80]">94%</div>
+           <div className="text-[9px] font-bold text-[#5a4e42] tracking-wider uppercase">Auto-resolved</div>
+         </div>
+      </div>
       <div className="flex-1 p-5 space-y-4 overflow-y-auto">
         {cases.map((c, i) => {
-          const isHigh = c.severity === "high";
+          const isSuccess = c.severity === "success";
           return (
-            <div key={i} className="bg-[#141210] rounded-2xl p-4 border hover:border-[#bd2525]/40 transition-all cursor-pointer group" style={{ borderColor: isHigh ? 'rgba(248,113,113,0.15)' : 'rgba(240,192,96,0.15)' }}>
+            <div key={i} className="bg-[#141210] rounded-2xl p-4 border hover:border-[#4ade80]/40 transition-all cursor-pointer group" style={{ borderColor: isSuccess ? 'rgba(74,222,128,0.15)' : 'rgba(240,192,96,0.15)' }}>
               <div className="flex items-center gap-2 mb-2">
-                <AlertTriangle size={14} className={isHigh ? "text-[#f87171]" : "text-[#f0c060]"} />
-                <span className={`text-[10px] font-bold rounded-full px-2.5 py-1 ${isHigh ? "bg-[#f87171]/15 text-[#f87171]" : "bg-[#f0c060]/15 text-[#f0c060]"}`}>{c.tag}</span>
+                <CheckCircle2 size={14} className={isSuccess ? "text-[#4ade80]" : "text-[#f0c060]"} />
+                <span className={`text-[10px] font-bold rounded-full px-2.5 py-1 ${isSuccess ? "bg-[#4ade80]/15 text-[#4ade80]" : "bg-[#f0c060]/15 text-[#f0c060]"}`}>{c.tag}</span>
                 <span className="text-[10px] font-mono text-[#5a4e42] ml-auto">{c.trend}</span>
               </div>
               <p className="text-[13px] font-medium text-[#d4c4a8] leading-snug group-hover:text-white transition-colors">{c.title}</p>
               <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#241e17]">
                 <span className="text-[11px] font-bold text-[#8a7a6a]">{c.freq}</span>
-                <button onClick={() => setViewingTranscript(i)} className="text-[11px] font-bold text-[#bd2525] opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 hover:text-[#ff5f57]">
-                  View transcripts <ChevronRight size={12} />
+                <button onClick={() => setViewingTranscript(i)} className="text-[11px] font-bold text-[#4ade80] opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 hover:text-white">
+                  View Insights <ChevronRight size={12} />
                 </button>
               </div>
             </div>
