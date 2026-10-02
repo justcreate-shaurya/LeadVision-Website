@@ -27,6 +27,7 @@ export function Footer() {
               <Link href="/products/text-to-speech" className="text-sm font-semibold text-ink hover:text-red transition-colors">Text-to-Speech</Link>
               <Link href="/products/qa-analytics" className="text-sm font-semibold text-ink hover:text-red transition-colors">QA & Analytics</Link>
               <Link href="/products/consumer-insights" className="text-sm font-semibold text-ink hover:text-red transition-colors">Consumer Insights</Link>
+              <Link href="/products/edge-case-discovery" className="text-sm font-semibold text-ink hover:text-red transition-colors">Edge Case Discovery</Link>
             </div>
           </div>
 

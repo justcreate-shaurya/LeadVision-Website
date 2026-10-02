@@ -7,10 +7,11 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const products = [
   { name: "Voice AI Agent", href: "/products/voice-ai-agent", desc: "AI agents that call in Hinglish" },
-  { name: "Speech-to-Text", href: "/products/speech-to-text", desc: "95%+ accurate transcription" },
+  { name: "Speech-to-Text", href: "/products/speech-to-text", desc: "94%+ accurate transcription" },
   { name: "Text-to-Speech", href: "/products/text-to-speech", desc: "Cloned Indian voices" },
-  { name: "QA & Analytics", href: "/products/qa-analytics", desc: "Score 100% of calls" },
+  { name: "QA & Analytics", href: "/products/qa-analytics", desc: "Score 100% of calls, live" },
   { name: "Consumer Insights", href: "/products/consumer-insights", desc: "Real-time alert feed" },
+  { name: "Edge Case Discovery", href: "/products/edge-case-discovery", desc: "Find what your scorecard missed" },
 ];
 
 export function Navbar() {

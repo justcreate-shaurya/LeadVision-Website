@@ -20,10 +20,11 @@ const spaceMono = Space_Mono({
 
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { MouseGlow } from "@/components/MouseGlow";
 
 export const metadata: Metadata = {
-  title: "Leadvision AI — The voice AI stack for India",
-  description: "AI agents that call, transcribe, score and understand every customer conversation. Built for how India actually speaks.",
+  title: "Leadvision AI | One bot stop for calls and insight",
+  description: "AI agents powered by our own STT and TTS models handle your calls, with live QA, consumer insights and edge-case discovery at a price that works for every call.",
 };
 
 export default function RootLayout({
@@ -34,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${spaceMono.variable} font-body bg-background text-ink scroll-smooth`}>
       <body className="min-h-screen flex flex-col font-body antialiased selection:bg-red selection:text-white">
+        <MouseGlow />
         <Navbar />
         <main className="flex-1 pt-24">{children}</main>
         <Footer />
