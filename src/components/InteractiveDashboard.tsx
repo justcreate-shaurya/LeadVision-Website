@@ -21,7 +21,7 @@ function Panel({ children, title, badge, accentColor = "#bd2525" }: { children: 
   return (
     <div className="h-full flex flex-col bg-[#0d0c0b] rounded-[24px] overflow-hidden border border-[#241e17] shadow-[0_32px_80px_rgba(0,0,0,0.4)] relative">
       {/* Chrome bar */}
-      <div className="flex items-center justify-between px-5 py-4 bg-[#141210] border-b border-[#241e17] z-10 relative">
+      <div className="flex items-center justify-between px-5 py-4 bg-[#141210] border-b border-[#241e17] z-10 relative shrink-0">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
             <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
@@ -36,7 +36,7 @@ function Panel({ children, title, badge, accentColor = "#bd2525" }: { children: 
           </span>
         )}
       </div>
-      <div className="relative flex-1 flex flex-col z-10">
+      <div className="relative flex-1 flex flex-col min-h-0 z-10">
         {children}
       </div>
     </div>
@@ -395,6 +395,24 @@ export function InteractiveDashboard() {
             Six integrated products built on our own speech models — explore each one below.
           </p>
         </motion.div>
+
+        {/* Mobile Horizontal Navigation */}
+        <div className="md:hidden flex overflow-x-auto gap-2 pb-4 mb-6 scrollbar-hide snap-x" style={{ msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
+          {products.map(p => {
+            const Icon = p.icon;
+            const isActive = active === p.id;
+            return (
+              <button
+                key={p.id}
+                onClick={() => setActive(p.id)}
+                className={`flex-shrink-0 snap-start flex items-center gap-2 px-4 py-2.5 rounded-full transition-colors border ${isActive ? 'bg-[#bd2525] border-[#bd2525] text-white shadow-md' : 'bg-[#141210] border-[#241e17] text-[#8a7a6a]'}`}
+              >
+                <Icon size={14} />
+                <span className="text-[13px] font-bold font-display">{p.name}</span>
+              </button>
+            )
+          })}
+        </div>
 
         {/* Desktop layout */}
         <div className="grid grid-cols-1 md:grid-cols-[340px_1fr] lg:grid-cols-[380px_1fr] gap-6 lg:gap-10 items-start max-w-6xl mx-auto">
