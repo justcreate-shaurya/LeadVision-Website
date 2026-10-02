@@ -126,14 +126,14 @@ function RecordingsSection() {
           </motion.div>
         </AnimatePresence>
 
-        <p className="text-center text-[11px] text-[#3a3028] mt-6">
+      <p className="text-center text-[12px] text-white/30 mt-6">
           Recordings are masked, with customer details removed.
         </p>
 
         {/* Working with */}
         <div className="text-center mt-16">
-          <p className="font-mono text-[10px] text-[#3a3028] uppercase tracking-widest mb-4">Working with currently</p>
-          <span className="text-4xl md:text-6xl font-display font-bold text-white">Traya<span className="text-red">.</span></span>
+          <p className="font-mono text-[10px] text-white/25 uppercase tracking-widest mb-5">Working with currently</p>
+          <span className="text-5xl md:text-7xl font-display font-bold text-white">Traya<span className="text-red">.</span></span>
         </div>
       </div>
     </section>
@@ -270,8 +270,10 @@ export default function Home() {
     <div className="flex flex-col min-h-screen overflow-hidden">
 
       {/* HERO */}
-      <section className="relative py-24 md:py-40 overflow-hidden bg-background">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-[radial-gradient(ellipse_at_top,_rgba(189,37,37,0.07)_0%,_transparent_65%)] pointer-events-none" />
+      <section className="relative py-24 md:py-44 overflow-hidden" style={{ background: "linear-gradient(170deg, #ffffff 0%, #fafafa 60%, #f7f2f2 100%)" }}>
+        {/* Gradient blobs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-[radial-gradient(ellipse_at_top,_rgba(189,37,37,0.09)_0%,_transparent_60%)] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle,_rgba(189,37,37,0.04)_0%,_transparent_70%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
             <motion.div initial="hidden" animate="visible" variants={stagger}>
@@ -342,11 +344,12 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="bg-white border border-slate-line rounded-3xl p-7 flex flex-col gap-5 hover:-translate-y-1 hover:shadow-xl transition-all"
+                  className="bg-white border border-slate-line rounded-3xl p-7 flex flex-col gap-5 hover:-translate-y-1 transition-all"
+                  style={{ boxShadow: "0 4px 24px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03)" }}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-red-light text-red flex items-center justify-center shrink-0">
-                      <Icon size={20} />
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={{ background: "linear-gradient(135deg, #fce8e8, #faf0f0)" }}>
+                      <Icon size={21} className="text-red" />
                     </div>
                     <div>
                       <div className="font-mono text-[9px] font-bold text-ink-faint uppercase tracking-wider">{u.sector}</div>
@@ -379,7 +382,8 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="bg-background border border-slate-line rounded-3xl p-8 flex flex-col gap-6"
+                className="border border-slate-line rounded-3xl p-8 flex flex-col gap-6 hover:-translate-y-1 transition-all"
+                style={{ background: "linear-gradient(145deg, #ffffff 0%, #fafafa 100%)", boxShadow: "0 4px 24px rgba(0,0,0,0.05)" }}
               >
                 <span className="font-mono text-[10px] font-bold text-red tracking-widest uppercase">{q.product}</span>
                 <blockquote className="text-ink leading-relaxed text-[15px] flex-1">
@@ -396,18 +400,18 @@ export default function Home() {
       </section>
 
       {/* STATS BAND */}
-      <section className="py-14 md:py-20 bg-background border-y border-slate-line">
+      <section className="py-14 md:py-20 border-y border-slate-line" style={{ background: "linear-gradient(180deg, #f5f4f2 0%, #fafafa 100%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { value: "<500ms", label: "Response latency", sub: "Replies land inside a natural pause", icon: Zap },
-              { value: "94%", label: "Transcription accuracy", sub: "Measured on real call audio", icon: Target },
-              { value: "45 min", label: "Long call support", sub: "Full context held throughout", icon: Activity },
-              { value: "8 in 10", label: "Listeners thought the agent was human", sub: "Callers hear a conversation, not a script", icon: Users },
-            ].map(({ value, label, sub, icon: Icon }) => (
-              <div key={label} className="bg-white border border-slate-line p-5 md:p-7 rounded-2xl flex flex-col hover:-translate-y-1 transition-transform">
-                <div className="w-10 h-10 rounded-xl bg-red-light text-red flex items-center justify-center mb-3">
-                  <Icon size={19} />
+              { value: "<500ms", label: "Response latency", sub: "Replies land inside a natural pause", icon: Zap, gradient: "from-red/10 to-red/5" },
+              { value: "94%", label: "Transcription accuracy", sub: "Measured on real call audio", icon: Target, gradient: "from-blue-500/10 to-blue-500/5" },
+              { value: "45 min", label: "Long call support", sub: "Full context held throughout", icon: Activity, gradient: "from-emerald-500/10 to-emerald-500/5" },
+              { value: "8 in 10", label: "Listeners thought agent was human", sub: "Callers hear a conversation, not a script", icon: Users, gradient: "from-violet-500/10 to-violet-500/5" },
+            ].map(({ value, label, sub, icon: Icon, gradient }) => (
+              <div key={label} className={`bg-gradient-to-br ${gradient} border border-slate-line p-5 md:p-7 rounded-2xl flex flex-col hover:-translate-y-1 transition-transform`} style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.04)" }}>
+                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center mb-3" style={{ boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+                  <Icon size={19} className="text-red" />
                 </div>
                 <div className="text-2xl md:text-3xl font-display font-bold text-ink mb-1">{value}</div>
                 <div className="text-[11px] font-bold text-ink uppercase tracking-wide leading-tight mb-1">{label}</div>

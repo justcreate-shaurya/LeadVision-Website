@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter, Space_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -33,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${spaceMono.variable} font-body bg-background text-ink scroll-smooth`}>
+    <html lang="en" className={`${plusJakarta.variable} ${spaceGrotesk.variable} ${inter.variable} ${spaceMono.variable} font-body bg-background text-ink scroll-smooth`}>
       <body className="min-h-screen flex flex-col font-body antialiased selection:bg-red selection:text-white">
         <MouseGlow />
         <Navbar />
