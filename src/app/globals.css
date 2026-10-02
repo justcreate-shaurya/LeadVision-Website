@@ -55,26 +55,16 @@ html::after {
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  background: radial-gradient(
-    800px circle at var(--mx) var(--my),
-    rgba(189, 37, 37, 0.12) 0%,
-    rgba(240, 192, 96, 0.08) 35%,
-    transparent 75%
-  );
-  transition: background 0.05s linear;
-  mix-blend-mode: multiply;
-}
-
-@media (prefers-color-scheme: dark) {
-  html::after {
-    mix-blend-mode: screen;
-    background: radial-gradient(
-      800px circle at var(--mx) var(--my),
-      rgba(189, 37, 37, 0.20) 0%,
-      rgba(240, 192, 96, 0.12) 35%,
-      transparent 75%
+  /* An organic, dual-color glow that tracks the mouse */
+  background: 
+    radial-gradient(
+      600px circle at var(--mx) var(--my),
+      rgba(189, 37, 37, 0.15) 0%,
+      rgba(240, 192, 96, 0.1) 25%,
+      transparent 60%
     );
-  }
+  transition: background 0.1s ease;
+  mix-blend-mode: normal;
 }
 
 body {

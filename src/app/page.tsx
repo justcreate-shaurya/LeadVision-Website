@@ -48,9 +48,21 @@ function RecordingsSection() {
   const [playing, setPlaying] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-32 bg-ink overflow-hidden relative">
-      <div className="absolute -top-60 left-1/3 w-[500px] h-[500px] bg-red/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+    <section className="py-20 md:py-36 bg-[#0a0908] overflow-hidden relative border-y border-[#1a1410]">
+      {/* SVG Top Wave Divider */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+        <svg className="relative block w-[calc(100%+1.3px)] h-[40px] md:h-[60px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-background"></path>
+        </svg>
+      </div>
+
+      {/* Beautiful Animated Mesh Gradient (Red & Gold) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+        <div className="absolute top-[10%] -left-[10%] w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle,_rgba(189,37,37,0.4)_0%,_transparent_70%)] rounded-full blur-[80px] mix-blend-screen animate-[pulse_10s_ease-in-out_infinite]" />
+        <div className="absolute bottom-[20%] -right-[5%] w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[radial-gradient(circle,_rgba(240,192,96,0.25)_0%,_transparent_70%)] rounded-full blur-[80px] mix-blend-screen animate-[pulse_12s_ease-in-out_infinite_2s]" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 pt-10">
         <motion.div
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
           className="text-center mb-12"
