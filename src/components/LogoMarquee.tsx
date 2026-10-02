@@ -18,8 +18,8 @@ const items = [...institutions, ...institutions];
 
 export function LogoMarquee() {
   return (
-    <section className="border-y border-[#2a2018] bg-[#0a0908] py-8 overflow-hidden">
-      <p className="font-mono text-[10px] font-bold text-[#5a4e42] tracking-widest uppercase text-center mb-6">
+    <section className="border-y border-slate-line bg-background py-8 overflow-hidden">
+      <p className="font-mono text-[10px] font-bold text-ink-faint tracking-widest uppercase text-center mb-6">
         Advisors from the world&rsquo;s top institutions
       </p>
       <div
@@ -51,9 +51,9 @@ export function LogoMarquee() {
               </div>
               {/* Subtle separator dot between name + dept */}
               <div className="text-center">
-                <span className="font-display font-bold text-[11px] text-[#8a7a6a] transition-colors group-hover:text-white">{inst.name}</span>
-                <span className="text-[#3a3028] mx-2 text-[10px]">·</span>
-                <span className="text-[10px] text-[#5a4e42] transition-colors group-hover:text-[#a89a8a]">{inst.dept}</span>
+                <span className="font-display font-bold text-[11px] text-ink-soft transition-colors group-hover:text-ink">{inst.name}</span>
+                <span className="text-ink-faint/40 mx-2 text-[10px]">·</span>
+                <span className="text-[10px] text-ink-faint transition-colors group-hover:text-ink-soft">{inst.dept}</span>
               </div>
             </div>
           ))}
