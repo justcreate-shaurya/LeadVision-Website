@@ -299,53 +299,47 @@ function EdgePanel() {
           </button>
           
           {/* Insights Dashboard Header */}
-          <div className="grid grid-cols-3 gap-3 mb-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-2">
             <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
               <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Detected Intent</div>
-              <div className="text-[12px] text-[#4ade80] font-medium">Cross-channel Context</div>
+              <div className="text-[12px] text-[#4ade80] font-medium">{c.intent}</div>
             </div>
-            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
+            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3 hidden sm:block">
               <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Sentiment Shift</div>
-              <div className="text-[12px] text-[#c4b49a] font-medium">Frustrated → <span className="text-[#4ade80]">Happy</span></div>
+              <div className="text-[12px] text-[#c4b49a] font-medium">{c.sentiment}</div>
             </div>
-            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3">
+            <div className="bg-[#0a0908] border border-[#241e17] rounded-xl p-3 hidden sm:block">
               <div className="text-[9px] text-[#5a4e42] font-bold uppercase tracking-wider mb-1">Action Taken</div>
-              <div className="text-[12px] text-[#c4b49a] font-medium">Memory sync (CRM)</div>
+              <div className="text-[12px] text-[#c4b49a] font-medium">{c.action}</div>
             </div>
           </div>
         </div>
 
         <div className="flex-1 overflow-y-auto p-5 bg-[#0a0908] space-y-5">
-          <div className="text-[10px] text-[#4a3e32] uppercase font-bold tracking-widest text-center">Yesterday, 14:32 PM</div>
+          <div className="text-[10px] text-[#4a3e32] uppercase font-bold tracking-widest text-center shrink-0">{c.time}</div>
           
-          <div className="flex gap-3">
-            <div className="w-6 h-6 rounded-full bg-[#1e3a5f]/60 text-[#60a5fa] flex items-center justify-center text-[9px] font-bold shrink-0">C</div>
-            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-[#a8b8d0]">
-              Hello, this is my third time calling. I spoke to Rahul yesterday about my return, and he said it would be picked up today. Where is the guy?
-            </div>
-          </div>
+          {c.transcript.map((turn, i) => (
+            <React.Fragment key={i}>
+              <div className={`flex gap-3 ${turn.role === 'A' ? 'flex-row-reverse' : ''}`}>
+                <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[9px] font-bold shrink-0 ${turn.role === 'A' ? 'bg-[#4ade80]/20 text-[#4ade80]' : 'bg-[#1e3a5f]/60 text-[#60a5fa]'}`}>
+                  {turn.role}
+                </div>
+                <div className={`border rounded-2xl px-3 py-2 text-[13px] ${turn.role === 'A' ? 'bg-[#101a14] border-[#4ade80]/20 rounded-tr-sm text-[#d4b896]' : 'bg-[#161820] border-[#241e17] rounded-tl-sm text-[#a8b8d0]'}`}>
+                  {turn.text}
+                </div>
+              </div>
 
-          {/* AI Internal Insight */}
-          <div className="flex justify-end pr-10 -my-2">
-            <div className="bg-[#1a1612] border border-[#241e17] rounded-lg px-3 py-1.5 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
-              <span className="text-[10px] font-mono text-[#8a7a6a]">Querying CRM: Contact="Rahul", Context="Return Pickup"... Match found.</span>
-            </div>
-          </div>
-
-          <div className="flex gap-3 flex-row-reverse">
-            <div className="w-6 h-6 rounded-full bg-[#4ade80]/20 text-[#4ade80] flex items-center justify-center text-[9px] font-bold shrink-0">A</div>
-            <div className="bg-[#101a14] border border-[#4ade80]/20 rounded-2xl rounded-tr-sm px-3 py-2 text-[13px] text-[#d4b896]">
-              Hi there! I can see your conversation with Rahul in our system. I am so sorry for the delay. The pickup agent was delayed by rain, but is currently 10 minutes away from your location.
-            </div>
-          </div>
-
-          <div className="flex gap-3">
-            <div className="w-6 h-6 rounded-full bg-[#1e3a5f]/60 text-[#60a5fa] flex items-center justify-center text-[9px] font-bold shrink-0">C</div>
-            <div className="bg-[#161820] border border-[#241e17] rounded-2xl rounded-tl-sm px-3 py-2 text-[13px] text-[#a8b8d0]">
-              Oh wow. Okay, I didn't expect you to actually know that. Thank you, I will wait for him.
-            </div>
-          </div>
+              {/* Show AI Internal Insight after the first customer turn (or before first agent turn) */}
+              {i === 0 && c.log && (
+                <div className="flex justify-end pr-10 -my-2">
+                  <div className="bg-[#1a1612] border border-[#241e17] rounded-lg px-3 py-1.5 flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse shrink-0" />
+                    <span className="text-[10px] font-mono text-[#8a7a6a] line-clamp-1 sm:line-clamp-none">{c.log}</span>
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </Panel>
     );
