@@ -4,13 +4,13 @@
 // Duplicated list for seamless infinite loop
 
 const institutions = [
-  { name: "IIT Bombay",        dept: "Computer Science",     logo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1d/Indian_Institute_of_Technology_Bombay_Logo.svg/200px-Indian_Institute_of_Technology_Bombay_Logo.svg.png" },
-  { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/IIT_Madras_Logo.svg/200px-IIT_Madras_Logo.svg.png" },
-  { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/IIMA_logo.svg/200px-IIMA_logo.svg.png" },
-  { name: "Stanford",          dept: "Product Design",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Seal_of_Leland_Stanford_Junior_University.svg/200px-Seal_of_Leland_Stanford_Junior_University.svg.png" },
-  { name: "IIM Bangalore",     dept: "Operations",           logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/IIM_Bangalore_Logo.svg/200px-IIM_Bangalore_Logo.svg.png" },
-  { name: "Imperial College",  dept: "Data Science",         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Imperial_College_London_new_logo.png/320px-Imperial_College_London_new_logo.png" },
-  { name: "Cambridge",         dept: "NLP Research",         logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/University_of_Cambridge_crest.svg/200px-University_of_Cambridge_crest.svg.png" },
+  { name: "IIT Bombay",        dept: "Computer Science",     logo: "https://logo.clearbit.com/iitb.ac.in?size=200" },
+  { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://logo.clearbit.com/iitm.ac.in?size=200" },
+  { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://logo.clearbit.com/iima.ac.in?size=200" },
+  { name: "Stanford",          dept: "Product Design",       logo: "https://logo.clearbit.com/stanford.edu?size=200" },
+  { name: "IIM Bangalore",     dept: "Operations",           logo: "https://logo.clearbit.com/iimb.ac.in?size=200" },
+  { name: "Imperial College",  dept: "Data Science",         logo: "https://logo.clearbit.com/imperial.ac.uk?size=200" },
+  { name: "Cambridge",         dept: "NLP Research",         logo: "https://logo.clearbit.com/cam.ac.uk?size=200" },
 ];
 
 // Duplicate for seamless loop
