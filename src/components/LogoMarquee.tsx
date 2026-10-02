@@ -4,13 +4,13 @@
 // Duplicated list for seamless infinite loop
 
 const institutions = [
-  { name: "IIT Bombay",        dept: "Computer Science",     logo: "https://logo.clearbit.com/iitb.ac.in?size=200" },
-  { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://logo.clearbit.com/iitm.ac.in?size=200" },
-  { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://logo.clearbit.com/iima.ac.in?size=200" },
-  { name: "Stanford",          dept: "Product Design",       logo: "https://logo.clearbit.com/stanford.edu?size=200" },
-  { name: "IIM Bangalore",     dept: "Operations",           logo: "https://logo.clearbit.com/iimb.ac.in?size=200" },
-  { name: "Imperial College",  dept: "Data Science",         logo: "https://logo.clearbit.com/imperial.ac.uk?size=200" },
-  { name: "Cambridge",         dept: "NLP Research",         logo: "https://logo.clearbit.com/cam.ac.uk?size=200" },
+  { name: "IIT Bombay",        dept: "Computer Science",     logo: "https://www.google.com/s2/favicons?domain=iitb.ac.in&sz=256" },
+  { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://www.google.com/s2/favicons?domain=iitm.ac.in&sz=256" },
+  { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://www.google.com/s2/favicons?domain=iima.ac.in&sz=256" },
+  { name: "Stanford",          dept: "Product Design",       logo: "https://www.google.com/s2/favicons?domain=stanford.edu&sz=256" },
+  { name: "IIM Bangalore",     dept: "Operations",           logo: "https://www.google.com/s2/favicons?domain=iimb.ac.in&sz=256" },
+  { name: "Imperial College",  dept: "Data Science",         logo: "https://www.google.com/s2/favicons?domain=imperial.ac.uk&sz=256" },
+  { name: "Cambridge",         dept: "NLP Research",         logo: "https://www.google.com/s2/favicons?domain=cam.ac.uk&sz=256" },
 ];
 
 // Duplicate for seamless loop
