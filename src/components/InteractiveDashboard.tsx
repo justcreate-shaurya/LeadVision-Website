@@ -260,9 +260,33 @@ function EdgePanel() {
   const [viewingTranscript, setViewingTranscript] = useState<number | null>(null);
 
   const cases = [
-    { tag: "Auto-resolved", title: "Customer references previous human agent's promise", freq: "47 calls", severity: "success", trend: "100% resolved" },
-    { tag: "Auto-resolved", title: "Customer interrupts pitch with complex multi-part query", freq: "31 calls", severity: "success", trend: "98% resolved" },
-    { tag: "Needs review", title: "Customer uses highly obscure regional slang for 'credit'", freq: "12 calls", severity: "medium", trend: "requires training" },
+    { 
+      tag: "Auto-resolved", title: "Customer references previous human agent's promise", freq: "47 calls", severity: "success", trend: "100% resolved",
+      intent: "Cross-channel Context", sentiment: "Frustrated → Happy", action: "Memory sync (CRM)", time: "Yesterday, 14:32 PM", log: 'Querying CRM: Contact="Rahul"... Match found.',
+      transcript: [
+        { role: "C", text: "Hello, this is my third time calling. I spoke to Rahul yesterday about my return, and he said it would be picked up today. Where is the guy?" },
+        { role: "A", text: "Hi there! I can see your conversation with Rahul in our system. I am so sorry for the delay. The pickup agent was delayed by rain, but is currently 10 minutes away from your location." },
+        { role: "C", text: "Oh wow. Okay, I didn't expect you to actually know that. Thank you, I will wait for him." }
+      ]
+    },
+    { 
+      tag: "Auto-resolved", title: "Customer interrupts pitch with complex multi-part query", freq: "31 calls", severity: "success", trend: "98% resolved",
+      intent: "Compound Intent", sentiment: "Neutral → Impressed", action: "Intent Disambiguation", time: "Today, 09:15 AM", log: "Detected 3 parallel intents. Restructuring response.",
+      transcript: [
+        { role: "A", text: "Hi, I'm calling from TrustFin about your pre-approved personal loan—" },
+        { role: "C", text: "Wait, hold on. Is the interest rate fixed, can I prepay it after 6 months without penalty, and do you need my physical PAN card?" },
+        { role: "A", text: "Great questions! Let me answer them one by one. Yes, the interest rate is fixed at 11.5%. You can prepay with zero penalty after 6 months. And no, a digital copy of your PAN is perfectly fine." }
+      ]
+    },
+    { 
+      tag: "Needs review", title: "Customer uses highly obscure regional slang for 'credit'", freq: "12 calls", severity: "medium", trend: "requires training",
+      intent: "Language Ambiguity", sentiment: "Confused → Escalated", action: "Human Handoff", time: "Yesterday, 18:45 PM", log: "Confidence < 60% for slang. Triggering smooth handoff.",
+      transcript: [
+        { role: "A", text: "Would you like to proceed with the application?" },
+        { role: "C", text: "Nahi bhai, mereko batao ki khata udhaar mein kitna time milega?" },
+        { role: "A", text: "I want to make sure I give you the most accurate information regarding that. Let me quickly connect you to our regional specialist who can assist you immediately." }
+      ]
+    },
   ];
 
   if (viewingTranscript !== null) {
