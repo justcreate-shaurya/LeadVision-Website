@@ -8,9 +8,9 @@ const institutions = [
   { name: "IIT Madras",        dept: "AI & Machine Learning", logo: "https://logo.uplead.com/iitm.ac.in" },
   { name: "IIM Ahmedabad",     dept: "Strategy & Growth",    logo: "https://logo.uplead.com/iima.ac.in" },
   { name: "Stanford",          dept: "Product Design",       logo: "https://logo.uplead.com/stanford.edu" },
-  { name: "IIM Bangalore",     dept: "Operations",           logo: "https://logo.uplead.com/iimb.ac.in" },
-  { name: "Imperial College",  dept: "Data Science",         logo: "https://logo.uplead.com/imperial.ac.uk" },
-  { name: "Cambridge",         dept: "NLP Research",         logo: "https://logo.uplead.com/cam.ac.uk" },
+  { name: "IIM Bangalore",     dept: "Operations",           logo: "/logos/iimb-custom.png" },
+  { name: "Imperial College",  dept: "Data Science",         logo: "/logos/imperial-custom.png" },
+  { name: "Cambridge",         dept: "NLP Research",         logo: "https://logo.uplead.com/cam.ac.uk", scale: "scale-150" },
 ];
 
 // Duplicate for seamless loop
@@ -18,8 +18,8 @@ const items = [...institutions, ...institutions];
 
 export function LogoMarquee() {
   return (
-    <section className="border-y border-slate-line bg-background py-8 overflow-hidden">
-      <p className="font-mono text-[10px] font-bold text-ink-faint tracking-widest uppercase text-center mb-6">
+    <section className="border-y border-[#2a2018] bg-[#0a0908] py-8 overflow-hidden">
+      <p className="font-mono text-[10px] font-bold text-[#5a4e42] tracking-widest uppercase text-center mb-6">
         Advisors from the world&rsquo;s top institutions
       </p>
       <div
@@ -46,14 +46,14 @@ export function LogoMarquee() {
                 <img
                   src={inst.logo}
                   alt={inst.name}
-                  className="max-h-full max-w-[140px] object-contain transition-all duration-300 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100"
+                  className={`max-h-full max-w-[140px] object-contain transition-all duration-300 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 ${inst.scale || ''}`}
                 />
               </div>
               {/* Subtle separator dot between name + dept */}
               <div className="text-center">
-                <span className="font-display font-bold text-[11px] text-ink-soft transition-colors group-hover:text-ink">{inst.name}</span>
-                <span className="text-ink-faint/40 mx-2 text-[10px]">·</span>
-                <span className="text-[10px] text-ink-faint transition-colors group-hover:text-ink-soft">{inst.dept}</span>
+                <span className="font-display font-bold text-[11px] text-[#8a7a6a] transition-colors group-hover:text-white">{inst.name}</span>
+                <span className="text-[#3a3028] mx-2 text-[10px]">·</span>
+                <span className="text-[10px] text-[#5a4e42] transition-colors group-hover:text-[#a89a8a]">{inst.dept}</span>
               </div>
             </div>
           ))}
