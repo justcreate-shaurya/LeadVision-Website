@@ -89,7 +89,7 @@ export default function BookADemo() {
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-ink mb-2">Phone number</label>
-                      <input required type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-line bg-background focus:outline-none focus:border-red focus:ring-2 focus:ring-red/10 transition text-ink" placeholder="+91 98765 43210" />
+                      <input required type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-line bg-background focus:outline-none focus:border-red focus:ring-2 focus:ring-red/10 transition text-ink" placeholder="+91 98765 XXXXX" />
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-ink mb-2">What would you like to demo?</label>

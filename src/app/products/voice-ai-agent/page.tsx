@@ -18,7 +18,7 @@ function CallMockup() {
         <div className="flex items-center justify-between pb-4 border-b border-[#2a2018]">
           <div>
             <div className="text-xs text-[#6b5a48] mb-1">Current Call</div>
-            <div className="text-white font-bold font-display">+91 98765 43210</div>
+            <div className="text-white font-bold font-display">+91 98765 XXXXX</div>
             <div className="text-xs text-[#4a3e32]">Traya Health · Pre-sales · 4m 12s</div>
           </div>
           <div className="text-right">
